@@ -67,10 +67,10 @@
 
 
 ## My ##
-# (Print) savable screenshot.
-"scrot -s -f ~/img/sht/%d_%m_%y__%H_%M_%S.png"
+# (Print) temporary full screenshot.
+"scrot -f /tmp/%H_%M_%S.png"
   m:0x0 + c:107
-# (Ctrl+Print) temporary screenshot.
+# (Ctrl+Print) temporary cropped screenshot.
 "scrot -s -f /tmp/%H_%M_%S.png"
   m:0x4 + c:107
 ##################################
