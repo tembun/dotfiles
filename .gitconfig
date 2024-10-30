@@ -26,6 +26,8 @@
 	cnt = rev-list --count
 	fnd = log --grep
 	cat = cat-file -p
+	flict = diff --check
+	nomas = branch --no-merged master
 [credential]
 	helper = store
 [push]
