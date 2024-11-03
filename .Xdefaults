@@ -34,6 +34,7 @@ XTerm*selectToClipboard: true
 XTerm*VT100.Translations: #override \
       Shift <KeyPress> Insert: insert-selection(CLIPBOARD, CUT_BUFFER1) \n\
       Ctrl <KeyPress> Insert: copy-selection(CLIPBOARD, CUT_BUFFER1) \n\
+      Shift <KeyPress> Delete: set-scroll-on-tty-output() \n\
       Alt <KeyPress>K: scroll-back(9,line) \n\
       Alt <KeyPress>L: scroll-forw(9,line) \n\
       Alt <KeyPress>Prior: scroll-back(2600,line) \n\
