@@ -28,6 +28,7 @@
 	cat = cat-file -p
 	flict = diff --check
 	nomas = branch --no-merged master
+	ignr = check-ignore
 [credential]
 	helper = store
 [push]
