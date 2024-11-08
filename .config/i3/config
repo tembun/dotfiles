@@ -37,7 +37,7 @@ workspace_auto_back_and_forth yes
 assign [class="$termcls"] 1
 
 # Automaticly move all NOT term clients to the second workspace.
-assign [class="^(?!($termcls)|($wbc)).*" instance="^(?!(xmessage)).*"] 2
+assign [class="^(?!($termcls)|($wbc)|XBoard).*" instance="^(?!(xmessage)).*"] 2
 
 # Automaticly focus every spawned client.
 for_window [class=".*"] focus
