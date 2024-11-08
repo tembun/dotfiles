@@ -55,6 +55,7 @@ bindsym $mod+Shift+minus scratchpad show, floating toggle
 ### Window-specific rules.
 for_window [class="XPaint"] split h
 for_window [class="$wbc"] floating enable, border none
+for_window [class="XBoard"] exec "i3-msg 'split h, focus right, move right, move right'"
 for_window [instance="FLOAT"] floating enable
 for_window [instance="pe"] floating enable
 for_window [instance="xmessage"] floating enable
