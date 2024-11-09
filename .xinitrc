@@ -4,4 +4,4 @@ xbindkeys &
 xsd &
 xhp &
 fetchmail
-exec /usr/bin/i3
+exec /usr/local/bin/i3
