@@ -23,8 +23,9 @@ XTerm*colorMode: false
 XTerm*allowColorOps: false
 XTerm*allowBoldFonts: false
 !-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1 -- works!!
-!-*-terminus-medium-r-normal--22-*-*-*-c-*-iso10646-1
+!-*-terminus-medium-r-normal--22-*-*-*-c-*-iso10646-1 -- works too.
 XTerm*font: -*-terminus-medium-r-normal--22-*-*-*-c-*-iso10646-1
+xmessage*international: true
 XTerm*saveLines: 2600
 XTerm*boldMode: false
 XTerm*underLine: false
