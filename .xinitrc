@@ -3,5 +3,5 @@ xset r rate 380 28
 xbindkeys &
 xsd &
 xhp &
-fetchmail
+emo -d &
 exec /usr/local/bin/i3
