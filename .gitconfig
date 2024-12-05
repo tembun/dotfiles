@@ -27,7 +27,7 @@
 	fnd = log --grep
 	cat = cat-file -p
 	flict = diff --check
-	nomas = branch --no-merged master
+	no = branch --no-merged
 	ignr = check-ignore
 [credential]
 	helper = store
