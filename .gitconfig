@@ -50,3 +50,5 @@
 	windowMemory = 2047m
 [merge]
 	ff = false
+[pull]
+	ff = only
