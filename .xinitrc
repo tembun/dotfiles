@@ -4,5 +4,5 @@ xbindkeys &
 xsd &
 xhp &
 sleep 1 && batd &
-emo -d &
+emn &
 exec /usr/local/bin/i3
