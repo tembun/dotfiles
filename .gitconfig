@@ -12,8 +12,8 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = artembunichev
-	email = artembunichev@zohomail.com
+	name = tem
+	email = tembun@bk.ru
 [alias]
 	s = status --short
 	ss = "! git s | grep '^[AMDR]'"
