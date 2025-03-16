@@ -38,8 +38,6 @@ export TERM=st-mono
 export TERMINAL=st-mono
 export MANPAGER='less -Xi'
 export MANWIDTH="tty"
-export MAIL=/var/mail/$USER
-export MBOX=~/mail/arc
 export NO_COLOR=1
 export ENV=~/.shrc sh
 
