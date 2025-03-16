@@ -12,7 +12,7 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = tem
+	name = Artem Bunichev
 	email = tembun@bk.ru
 [alias]
 	s = status --short
