@@ -39,7 +39,7 @@
 [safe]
 	directory = *
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [http]
 	postBuffer = 100000000
 	lowSpeedLimit = 0
