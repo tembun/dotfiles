@@ -34,6 +34,8 @@ bind ^[[6~ ed-move-to-end
 # set prompt: ``username@hostname:directory $ '' 
 export PS1="\u@\h:\w\\$ "
 export TERM=st-mono
+# This variable is used by `i3-sensible-terminal'.
+export TERMINAL=st-mono
 export MANPAGER='less -Xi'
 export MANWIDTH="tty"
 export MAIL=/var/mail/$USER
