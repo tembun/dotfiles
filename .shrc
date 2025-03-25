@@ -35,7 +35,7 @@ bind ^[[6~ ed-move-to-end
 export PS1="\u@\h:\w\\$ "
 export TERM=st-mono
 # This variable is used by `i3-sensible-terminal'.
-export TERMINAL=st-mono
+export TERMINAL="$TERM"
 export MANPAGER='less -Xi'
 export MANWIDTH="tty"
 export NO_COLOR=1
