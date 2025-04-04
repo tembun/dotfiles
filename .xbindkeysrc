@@ -71,7 +71,8 @@
 "scrot -f /tmp/%H_%M_%S.png"
   m:0x0 + c:107
 # (Ctrl+Print) temporary cropped screenshot.
-"scrot -s -f /tmp/%H_%M_%S.png"
+# `--line mode=classic' is needed to make `-f' flag work with latest `scrot'.
+"scrot --line mode=classic -s -f /tmp/%H_%M_%S.png"
   m:0x4 + c:107
 ##################################
 # End of xbindkeys configuration #
