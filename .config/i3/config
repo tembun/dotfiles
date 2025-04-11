@@ -13,7 +13,12 @@ set $mod Mod4
 
 ##### My
 
-set $termcls XTerm
+# Change minimum width and height for floating windows.
+# By default, they are 75x50.
+# https://github.com/i3/i3/blob/969e6bc8c4da6c236f5e13d40b57829629c378b1/src/floating.c#L77
+floating_minimum_size 20 x 20
+
+set $termcls st
 set $wbc wbc
 
 # Remove window borders by default (set 0 for titles to be visible, but not borders).
