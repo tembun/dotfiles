@@ -31,7 +31,7 @@ xhp &
 # A little delay before execution bacause drawing an X-window
 # immediately after startup doesn't always work correctly.
 #
-sleep 1 && batd &
+(sleep 1 && batd) &
 
 # Run email-notifier daemon.
 emn &
