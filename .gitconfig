@@ -1,5 +1,5 @@
 [core]
-	editor = 
+	editor = ee
 	autocrlf = false
 	quotepath = false
 	pager = less -X
