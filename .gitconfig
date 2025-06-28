@@ -6,6 +6,10 @@
 	packedGitLimit = 512m 
 	packedGitWindowSize = 512m 
 	compression = 0
+[pager]
+	log = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |lf
+	show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |lf
+	diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |lf
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
