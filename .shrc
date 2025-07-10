@@ -32,7 +32,7 @@ bind ^[[5~ ed-move-to-beg
 bind ^[[6~ ed-move-to-end
 
 # set prompt: ``username@hostname:directory $ '' 
-export PS1="\u@\h:\w\\$ "
+export PS1="\u@\h> "
 export TERM=st-mono
 # This variable is used by `i3-sensible-terminal'.
 export TERMINAL="$TERM"
