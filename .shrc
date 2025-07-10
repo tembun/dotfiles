@@ -44,3 +44,5 @@ export ENV=~/.shrc sh
 
 # search path for cd(1)
 # CDPATH=:$HOME
+
+alias tps='. tps'
