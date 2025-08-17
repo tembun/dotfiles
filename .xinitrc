@@ -36,5 +36,11 @@ xhp &
 # Run email-notifier daemon.
 emn &
 
-# Execute the window manager (i3).
-exec /usr/local/bin/i3
+if tmux has-session 2>/dev/null; then
+	tmux_cmd="tmux attach"
+else
+	tmux_cmd="tmux"
+fi
+
+st -e $tmux_cmd &
+exec dwm
