@@ -1,35 +1,13 @@
 XTerm*decTerminalID: vt100
-!XTerm*color0: RGB:0/0/0
-!XTerm*color1: RGB:ff/ff/ff
-!XTerm*color2: RGB:ff/ff/ff
-!XTerm*color3: RGB:ff/ff/ff
-!XTerm*color4: RGB:ff/ff/ff
-!XTerm*color5: RGB:ff/ff/ff
-!XTerm*color6: RGB:ff/ff/ff
-!XTerm*color7: RGB:ff/ff/ff
-!XTerm*color8: RGB:ff/ff/ff
-!XTerm*color9: RGB:ff/ff/ff
-!XTerm*color10: RGB:ff/ff/ff
-!XTerm*color11: RGB:ff/ff/ff
-!XTerm*color12: RGB:ff/ff/ff
-!XTerm*color13: RGB:ff/ff/ff
-!XTerm*color14: RGB:ff/ff/ff
-!XTerm*color15: RGB:ff/ff/ff
 XTerm*foreground: #ffffff
 XTerm*background: #000000
 XTerm*backarrowKeyIsErase: true
 XTerm*cursorBlink: false
-XTerm*colorMode: false
-XTerm*allowColorOps: false
-XTerm*allowBoldFonts: false
 !-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1 -- works!!
 !-*-terminus-medium-r-normal--22-*-*-*-c-*-iso10646-1 -- works too.
 XTerm*font: -*-terminus-medium-r-normal--22-*-*-*-c-*-iso10646-1
 xmessage*international: true
 XTerm*saveLines: 2600
-XTerm*boldMode: false
-XTerm*underLine: false
-!XTerm*font: Termius
 XTerm*maximized: true
 XTerm*selectToClipboard: true
 XTerm*VT100.Translations: #override \
