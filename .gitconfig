@@ -7,9 +7,9 @@
 	packedGitWindowSize = 512m 
 	compression = 0
 [pager]
-	log = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |lf
-	show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |lf
-	diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |lf
+	log = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |less -FXi
+	show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |less -FXi
+	diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |less -FXi
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
