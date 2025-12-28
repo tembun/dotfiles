@@ -37,7 +37,7 @@ export TERM=xterm-mono
 # This variable is used by `i3-sensible-terminal'.
 export TERMINAL="$TERM"
 export VISUAL=fpad
-export MANPAGER='less -Xi'
+export MANPAGER='less -FXi'
 export MANWIDTH="tty"
 export NO_COLOR=1
 export ENV=~/.shrc sh
