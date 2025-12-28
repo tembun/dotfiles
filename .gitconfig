@@ -19,9 +19,9 @@
 	name = Artem Bunichev
 	email = tembun@bk.ru
 [alias]
-	s = status --short
-	ss = "! git s | grep '^[AMDR]'"
-	br = branch
+	s = ! git status --short |less -FXi
+	ss = ! git s | grep '^[AMDR]'
+	br = git branch
 	co = checkout
 	logs = log --all --graph --pretty=format:\"%h [ %s ] %d\n\"
 	logf = log --all --graph --date=format:'%d-%m-%y %H:%M' \
