@@ -68,7 +68,7 @@
 
 ## My ##
 # (Print) temporary full screenshot.
-"scrot -f /tmp/%H_%M_%S.png"
+"scrot -F /tmp/%H_%M_%S.png"
   m:0x0 + c:107
 # (Ctrl+Print) temporary cropped screenshot.
 # `--line mode=classic' is needed to make `-f' flag work with latest `scrot'.
