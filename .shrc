@@ -39,6 +39,7 @@ export MANPAGER='less -FXi'
 export MANWIDTH="tty"
 export NO_COLOR=1
 export ENV=~/.shrc sh
+export TMPDIR=/tmp
 
 # search path for cd(1)
 # CDPATH=:$HOME
