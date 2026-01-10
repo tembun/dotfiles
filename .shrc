@@ -41,7 +41,4 @@ export NO_COLOR=1
 export ENV=~/.shrc sh
 export TMPDIR=/tmp
 
-# search path for cd(1)
-# CDPATH=:$HOME
-
 alias tps='. tps'
