@@ -3,8 +3,9 @@
 	autocrlf = false
 	quotepath = false
 	pager = less -X
-	packedGitLimit = 512m 
-	packedGitWindowSize = 512m 
+	abbrev = 12
+	packedGitLimit = 512m
+	packedGitWindowSize = 512m
 	compression = 0
 [pager]
 	log = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |less -FXi
