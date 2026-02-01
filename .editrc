@@ -1,0 +1,5 @@
+# Bindings for editline(7), which in particular is used for sh(1).
+# See editrc(5).
+
+# Edit current line buffer in the editor and return the result to the program.
+bind ^O vi-histedit
