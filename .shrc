@@ -27,3 +27,6 @@ export ENV=~/.shrc sh
 export TMPDIR=/tmp
 
 alias tps='. tps'
+
+# shells/bash specific
+export PROMPT_COMMAND='history -a; history -r'
