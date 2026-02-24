@@ -22,6 +22,7 @@
 	co = checkout
 	wip = ! git add -A && git commit --no-verify -m \"WIP: $(git branch --show-current)\"
 	pop = reset HEAD~1
+	fix = "!f() { t=/tmp/__gitfix; printf \"\n\nFixes:	${@}\" >${t}; git commit --template ${t}; rm -f ${t}; }; f"
 	diffc = diff --cached
 	difft = diff-tree --name-status -r
 	cnt = rev-list --count
