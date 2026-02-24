@@ -1,22 +1,20 @@
-Nsxiv.*.background: #0d1117
-Nsxiv.*.foreground: #ffffff
 XTerm*decTerminalID: vt100
-XTerm*foreground: #ffffff
-XTerm*background: #000000
+XTerm*foreground: grey90
+XTerm*background: black
 XTerm*backarrowKeyIsErase: true
 XTerm*cursorBlink: false
-!-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1 -- works!!
-!-*-terminus-medium-r-normal--22-*-*-*-c-*-iso10646-1 -- works too.
+XTerm*allowBoldFonts: false
+XTerm*boldMode: false
 XTerm*font: -*-terminus-medium-r-normal--12-*-*-*-c-*-iso10646-1
-xmessage*international: true
-XTerm*saveLines: 2600
+XTerm*saveLines: 10000
 XTerm*maximized: true
 XTerm*selectToClipboard: true
 XTerm*VT100.Translations: #override \
       Shift <KeyPress> Insert: insert-selection(CLIPBOARD, CUT_BUFFER1) \n\
       Ctrl <KeyPress> Insert: copy-selection(CLIPBOARD, CUT_BUFFER1) \n\
       Shift <KeyPress> Delete: set-scroll-on-tty-output() \n\
-      Alt <KeyPress>K: scroll-back(9,line) \n\
-      Alt <KeyPress>L: scroll-forw(9,line) \n\
       Alt <KeyPress>Prior: scroll-back(2600,line) \n\
       Alt <KeyPress>Next: scroll-forw(2600,line)
+XTerm*metaSendsEscape: true
+Nsxiv.*.background: #0d1117
+Nsxiv.*.foreground: #ffffff
