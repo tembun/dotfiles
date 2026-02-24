@@ -7,10 +7,6 @@
 	packedGitLimit = 512m
 	packedGitWindowSize = 512m
 	compression = 0
-[pager]
-	log = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |less -FXi
-	show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |less -FXi
-	diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight |less -FXi
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -24,9 +20,6 @@
 	ss = ! git s | grep '^[AMDR]'
 	br = branch
 	co = checkout
-	logs = log --all --graph --pretty=format:\"%h [ %s ] %d\n\"
-	logf = log --all --graph --date=format:'%d-%m-%y %H:%M' \
-	       --pretty=format:\"%h [ %s ] %d\n- %an (%ae)\n- %cd\n\"
 	diffc = diff --cached
 	difft = diff-tree --name-status -r
 	cnt = rev-list --count
@@ -40,7 +33,30 @@
 [push]
 	default = nothing
 [color]
-	ui=false
+	ui=true
+[color "diff"]
+	meta = normal dim
+	frag = normal dim
+	func = white
+	context = white
+	commit = yellow
+	old = brightred dim
+	new = brightgreen dim
+[color "status"]
+	added = brightgreen
+	changed = brightyellow
+	untracked = white
+[color "branch"]
+	current = brightyellow
+	local = white
+	remote = brightwhite
+	upstream = brightwhite
+[color "decorate"]
+	HEAD = brightcyan dim
+	branch = brightwhite dim
+	remoteBranch = brightblue dim
+	tag = yellow
+	stash = red
 [safe]
 	directory = *
 [init]
