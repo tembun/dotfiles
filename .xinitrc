@@ -6,7 +6,7 @@ xset b off
 # It means, if you press and hold the key, it reports events faster,
 # thus, characters are printed faster.
 #
-xset r rate 380 28
+xset r rate 160 35
 
 #
 # Remap XF86Back и XF86Forward keys to PgUp/PgDn for ThinkPad X220.
