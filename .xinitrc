@@ -42,5 +42,6 @@ else
 	tmux_cmd="tmux"
 fi
 
-st -e $tmux_cmd &
+xrdb -load ~/.Xdefaults
+xterm -e $tmux_cmd &
 exec dwm
