@@ -8,7 +8,7 @@ runtime! ftplugin/man.vim
 set autoindent
 set autowrite 		" Automatically save the file when other program modifies it
 set backupcopy=yes
-set directory=$HOME/.vim/swap//
+set directory=$HOME/.vimswap//
 set display=lastline 	" Display as much as possible of the last line even if it doesn't fit
 set foldmethod=manual 	" Folds must be created manually.
 set formatoptions=tcq
