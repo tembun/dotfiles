@@ -1,0 +1,36 @@
+# .shrc - bourne shell startup file
+#
+# This file will be used if the shell is invoked for interactive use and
+# the environment variable ENV is set to this file.
+#
+# see also sh(1), environ(7).
+
+# # csh like history on arrow up and down
+# bind ^[[A ed-search-prev-history
+# bind ^[[B ed-search-next-history
+
+# # ctrl+arrow allow to jump from words to words
+# bind "\\e[1;5C" em-next-word
+# bind "\\e[1;5D" ed-prev-word
+#alias history='fc -l'
+
+# set prompt: ``username@hostname:directory$ ''
+export PS1="\u@\h:\w\\$ "
+export TERM=xterm-256color
+export EDITOR=vim
+export VISUAL=vim
+export MANPAGER="vim -M +MANPAGER '+set nu rnu' -"
+export MANWIDTH=tty
+export MANWIDTH_TTY_OFFSET=3
+export NO_COLOR=1
+export ENV=~/.shrc sh
+export TMPDIR=/tmp
+export HISTSIZE=100000
+
+alias tps='. tps'
+
+# shells/bash specific
+export PROMPT_COMMAND='history -a; history -r'
+
+# textproc/fzf specific
+export FZF_DEFAULT_OPTS='--walker-root=/etc /usr/include /usr/local/etc /usr/local/include /home/tem/dev'
