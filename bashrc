@@ -34,3 +34,24 @@ export PROMPT_COMMAND='history -a; history -r'
 
 # textproc/fzf specific
 export FZF_DEFAULT_OPTS="--walker-root=. /etc /usr/include /usr/local/etc /usr/local/include /usr/local/src /home/tem/dev /home/tem/bin /home/tem/scripts"
+
+# sysutils/tmux specific
+# tux() -- tmux create-or-attach
+#	tmux does support custom command aliases with command-alias. But even if
+#	we define an alias like: `s = new -As`, then `tmux s tmp` would work
+#	only when the tmux server is already running. This is not very
+#	convenient, that's why it seems that the only way to achieve that is to
+#	use a shell function.
+#	If no arguments are given, it lists all the active sessions.
+#	If a single argument is given, it's treated as a session name. If
+#	session with such name exists, attach to that session, otherwise -
+#	create it.
+tux()
+{
+	which -s tmux || return
+	if [ ${#} -eq 0 ]; then
+		tmux ls
+	else
+		tmux new -As "${1}"
+	fi
+}
