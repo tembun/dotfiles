@@ -43,15 +43,27 @@ export FZF_DEFAULT_OPTS="--walker-root=. /etc /usr/include /usr/local/etc /usr/l
 #	convenient, that's why it seems that the only way to achieve that is to
 #	use a shell function.
 #	If no arguments are given, it lists all the active sessions.
-#	If a single argument is given, it's treated as a session name. If
-#	session with such name exists, attach to that session, otherwise -
+#	If the first given argument is 'kill', then rest of the arguments are
+#	treated as names of the sessions to kill.
+#	Otherwise, if a single argument is given, it's treated as a session name.
+#	If session with such name exists, attach to that session, otherwise -
 #	create it.
 tux()
 {
+	local arg="${1}"
 	which -s tmux || return
-	if [ ${#} -eq 0 ]; then
-		tmux ls
-	else
-		tmux new -As "${1}"
-	fi
+	case "${arg}" in
+	"")	tmux ls ;;
+	"kill")
+		shift
+		if [ ${#} -eq 0 ]; then
+			echo "What sessions to kill?" 1>&2
+			return 2
+		fi
+		for ses in ${@}; do
+			tmux kill-session -t "${ses}"
+		done
+		;;
+	*)	tmux new -As "${arg}" ;;
+	esac
 }
