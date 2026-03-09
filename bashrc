@@ -57,7 +57,7 @@ tux()
 	"kill")
 		shift
 		if [ ${#} -eq 0 ]; then
-			echo "What sessions to kill?" 1>&2
+			echo "Which sessions to kill?" 1>&2
 			return 2
 		fi
 		for ses in ${@}; do
