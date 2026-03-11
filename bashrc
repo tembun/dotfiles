@@ -33,7 +33,7 @@ alias tps='. tps'
 export PROMPT_COMMAND='history -a; history -r'
 
 # textproc/fzf specific
-export FZF_DEFAULT_OPTS="--walker-root=. /etc /usr/include /usr/local/etc /usr/local/include /usr/local/src /home/tem/dev /home/tem/bin /home/tem/scripts"
+export FZF_DEFAULT_OPTS="--walker-root=. /etc /usr/include /usr/local/etc /usr/local/include /usr/local/src /home/tem/dev /home/tem/bin /home/tem/scripts /tmp"
 
 # sysutils/tmux specific
 # tux() -- tmux create-or-attach
