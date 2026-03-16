@@ -6,7 +6,6 @@
 " Patched by tembun (change blue color to orange).
 
 set background=dark
-
 hi clear
 if exists('syntax_on')
    syntax reset
@@ -104,9 +103,8 @@ call s:hi('helpHyperTextJump', s:orange, s:default_bg, s:underline)
 call s:hi('helpNote')
 
 " Popup menu.
-call s:hi('Pmenu', s:white, s:orange)
-call s:hi('PmenuSel', s:orange, s:white)
-
+call s:hi('Pmenu', s:bgray, s:orange)
+call s:hi('PmenuSel', s:black, s:white)
 " Notes.
 call s:hi('Todo', s:black, s:yellow, s:bold)
 
