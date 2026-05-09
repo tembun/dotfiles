@@ -18,8 +18,9 @@ daemon -o /dev/null xbindkeys
 daemon -o /dev/null xsd
 # Hide X pointer if it hasn't been active for a while.
 daemon -o /dev/null xhp
-# Run email-notifier daemon.
-daemon -o /dev/null emn
+# Run email-notifier daemons (for several mail accounts)
+daemon -o /dev/null emn ~/.emnrc.primary
+daemon -o /dev/null emn ~/.emnrc.sink
 
 # Start the battery monitor.
 # A little delay before execution bacause drawing an X-window
