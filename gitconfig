@@ -20,6 +20,7 @@
 	ss = ! git s | grep '^[AMDR]'
 	br = branch
 	co = checkout
+	alt = commit --amend --no-edit
 	wip = ! git add -A && git commit --no-verify -m \"WIP: $(git branch --show-current)\"
 	pop = reset HEAD~1
 	fix = "!f() { t=/tmp/__gitfix; printf \"\n\nFixes:	${@}\" >${t}; git commit --template ${t}; rm -f ${t}; }; f"
