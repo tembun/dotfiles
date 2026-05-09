@@ -14,7 +14,7 @@
 	required = true
 [user]
 	name = Artem Bunichev
-	email = tembun@bk.ru
+	email = temcbun@gmail.com
 [alias]
 	s = status --short
 	ss = ! git s | grep '^[AMDR]'
