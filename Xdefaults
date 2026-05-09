@@ -5,7 +5,7 @@ XTerm*backarrowKeyIsErase: true
 XTerm*cursorBlink: false
 XTerm*allowBoldFonts: false
 XTerm*boldMode: false
-XTerm*font: -*-terminus-medium-r-normal--12-*-*-*-c-*-iso10646-1
+XTerm*font: -*-terminus-medium-r-normal--16-*-*-*-c-*-iso10646-1
 XTerm*saveLines: 10000
 XTerm*maximized: true
 XTerm*selectToClipboard: true
