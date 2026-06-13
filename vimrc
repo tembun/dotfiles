@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/vim-highlighturl'
+Plug 'tpope/vim-commentary'
 call plug#end()
 runtime! ftplugin/man.vim
 
