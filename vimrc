@@ -89,6 +89,7 @@ let g:fzf_layout = { 'down': '10' }
 noremap <leader>/ :Commentary<CR>
 
 noremap <leader>t :tabe<CR>
+noremap <leader>f :make<CR>
 iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
 augroup quickfix
     autocmd!
