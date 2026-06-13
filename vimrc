@@ -67,6 +67,8 @@ command W write
 command Q quit
 command Wq write | quit
 command WQ write | quit
+
+map Y y$
 command Eva .write !sh
 
 filetype on
