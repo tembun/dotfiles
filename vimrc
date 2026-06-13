@@ -88,6 +88,21 @@ let g:fzf_layout = { 'down': '10' }
 " Comment/uncomment lines
 noremap <leader>/ :Commentary<CR>
 
+" grep pattern, open results in a quickfix window with highlighting.
+" -nargs=+	Custom command Grep may take any number of arguments
+" let @/	Save rhs into register '/' (last search pattern register)
+" '<args>'	The arguments, passed into a Grep command
+" set hlsearch	We saved our search pattern into '/'; this would highlight it.
+" silent	Run command w/o result message box that pops up by default.
+"       	The crucial part for it to work properly is a 'redraw!' part
+"        	in the QuickFixCmdPost (see below), because I figured that when
+"        	grepping in silent mode, the real text buffer gets some weird
+"        	messy characters in random places.  So force a full screen
+"        	redraw every time quickfix window is opened.
+" grep! 	grep, but don't jump to the first match right away
+command! -nargs=+ Grep execute "let @/ = '<args>' |set hlsearch |silent grep! -rI <args> ."
+noremap <leader>g :Grep<space>
+
 noremap <leader>t :tabe<CR>
 noremap <leader>f :make<CR>
 noremap <leader>q :only<CR>
@@ -98,6 +113,7 @@ iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
 augroup quickfix
     autocmd!
     " Automatic location/quickfix window
-    autocmd QuickFixCmdPost [^l]* 10cwindow
+    " See comments regarding 'redraw!' in Grep command definition above.
+    autocmd QuickFixCmdPost [^l]* 15cwindow |redraw!
     autocmd QuickFixCmdPost    l* lwindow
 augroup END
