@@ -79,7 +79,7 @@ noremap <C-p> :Files<CR>
 noremap <leader>b :Buffers<CR>
 let g:fzf_preview_window = []
 let g:fzf_layout = { 'window': '10new' }
-iabbrev debugprint printf("%s():%d\n", __func__, __LINE__)
+iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
 augroup quickfix
     autocmd!
     " Automatic location/quickfix window
