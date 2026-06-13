@@ -21,6 +21,7 @@
 	br = branch
 	co = checkout
 	ll = log --oneline
+	p = push origin HEAD
 	alt = commit --amend --no-edit
 	wip = ! git add -A && git commit --no-verify -m \"WIP: $(git branch --show-current)\"
 	pop = reset HEAD~1
