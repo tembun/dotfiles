@@ -35,7 +35,7 @@ set wrapscan 		" Come back to the first search match after the last one
 " noinset - effectively it allows to get back to your original text when
 "           cancelling the autocomplete with C-e.  It still does insert text
 "           under the cursor while cycling through autocomplete options.
-set completeopt=menuone,noinsert
+set completeopt=menuone
 
 set t_Co=256
 set t_md=
