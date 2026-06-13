@@ -67,3 +67,8 @@ tux()
 	*)	tmux new -As "${arg}" ;;
 	esac
 }
+
+# Disable terminal behaviour when CTRL-S freezing the terminal.
+# I need that to make readline(3) (which is used in shells/bash) mapping for
+# forward-search-history (opposite of CTRL-R) work.
+stty -ixon
