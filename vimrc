@@ -75,7 +75,11 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" Custom commands
+"
+" Open fzf files
 noremap <C-p> :Files<CR>
+" Open fzf openned buffers
 noremap <leader>b :Buffers<CR>
 let g:fzf_preview_window = []
 let g:fzf_layout = { 'window': '10new' }
