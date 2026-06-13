@@ -79,6 +79,10 @@ noremap <C-p> :Files<CR>
 noremap <leader>b :Buffers<CR>
 let g:fzf_preview_window = []
 let g:fzf_layout = { 'window': '10new' }
+
+" Comment/uncomment lines
+noremap <leader>/ :Commentary<CR>
+
 iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
 augroup quickfix
     autocmd!
