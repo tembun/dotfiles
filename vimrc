@@ -90,6 +90,7 @@ noremap <leader>/ :Commentary<CR>
 
 noremap <leader>t :tabe<CR>
 noremap <leader>f :make<CR>
+noremap <leader>q :only<CR>
 iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
 augroup quickfix
     autocmd!
