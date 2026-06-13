@@ -82,7 +82,8 @@ noremap <C-p> :Files<CR>
 " Open fzf openned buffers
 noremap <leader>b :Buffers<CR>
 let g:fzf_preview_window = []
-let g:fzf_layout = { 'window': '10new' }
+" The fzf search window should be located at the bottom and take up 10 rows
+let g:fzf_layout = { 'down': '10' }
 
 " Comment/uncomment lines
 noremap <leader>/ :Commentary<CR>
