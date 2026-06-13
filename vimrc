@@ -109,6 +109,13 @@ noremap <leader>q :only<CR>
 noremap <leader>w :set nowrap!<CR>
 noremap <leader>n :norm
 
+" Invoke the file of the current buffer and open its output in new split.
+command! ExecFile let f = expand('%:p') |
+    \ belowright 15new |
+    \ setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile |
+    \ execute '0read !' . shellescape(f)
+noremap <leader>e :ExecFile<CR>
+
 iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
 augroup quickfix
     autocmd!
