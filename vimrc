@@ -115,6 +115,12 @@ command! ExecFile let f = expand('%:p') |
     \ setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile |
     \ execute '0read !' . shellescape(f)
 noremap <leader>e :ExecFile<CR>
+augroup ShSpecial
+	au!
+	" Check shell script syntax (current buffer)
+	au FileType sh setlocal errorformat=%f:\ %l:\ %m
+	au FileType sh setlocal makeprg=sh\ -n\ %
+augroup END
 
 iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
 augroup quickfix
