@@ -43,10 +43,10 @@ syntax on
 colorscheme monochrome
 hi ExtraWhitespace ctermbg=130
 match ExtraWhitespace /[ 	]\+$/
-autocmd BufWinEnter * match ExtraWhitespace /[ 	]\+$/
-autocmd InsertEnter * match ExtraWhitespace /[ 	]\+$/
-autocmd InsertLeave * match ExtraWhitespace /[ 	]\+$/
-autocmd BufWinLeave * call clearmatches()
+au BufWinEnter * match ExtraWhitespace /[ 	]\+$/
+au InsertEnter * match ExtraWhitespace /[ 	]\+$/
+au InsertLeave * match ExtraWhitespace /[ 	]\+$/
+au BufWinLeave * call clearmatches()
 hi LineNr term=NONE cterm=NONE
 let g:highlighturl_ctermfg = 184
 let g:highlighturl_underline = 0
@@ -124,9 +124,9 @@ augroup END
 
 iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
 augroup quickfix
-    autocmd!
+    au!
     " Automatic location/quickfix window
     " See comments regarding 'redraw!' in Grep command definition above.
-    autocmd QuickFixCmdPost [^l]* 15cwindow |redraw!
-    autocmd QuickFixCmdPost    l* lwindow
+    au QuickFixCmdPost [^l]* 15cwindow |redraw!
+    au QuickFixCmdPost    l* lwindow
 augroup END
