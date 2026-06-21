@@ -110,10 +110,17 @@ noremap <leader>w :set nowrap!<CR>
 noremap <leader>n :norm
 
 " Invoke the file of the current buffer and open its output in new split.
-command! ExecFile let f = expand('%:p') |
-    \ belowright 15new |
-    \ setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile |
-    \ execute '0read !' . shellescape(f)
+function! ExecFile()
+	let f = expand('%:p')
+	let out = systemlist(f)
+	if empty(out)
+		return
+	endif
+	belowright 15new
+	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+	call setline(1, out)
+endfunction
+command! ExecFile call ExecFile()
 noremap <leader>e :ExecFile<CR>
 augroup ShSpecial
 	au!
