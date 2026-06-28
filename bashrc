@@ -35,6 +35,9 @@ export PROMPT_COMMAND='history -a; history -r'
 # textproc/fzf specific
 export FZF_DEFAULT_OPTS="--walker-root=. /etc /usr/include /usr/local/etc /usr/local/include /usr/local/src /home/tem/dev /home/tem/bin /home/tem/scripts /usr/src-current /home/tem/src /tmp"
 
+# misc/qt6ct is used to set a dark theme for Qt applications
+export QT_QPA_PLATFORMTHEME=qt6ct
+
 # sysutils/tmux specific
 # tux() -- tmux create-or-attach
 #	tmux does support custom command aliases with command-alias. But even if
