@@ -25,7 +25,7 @@ export MANWIDTH_TTY_OFFSET=3
 export NO_COLOR=1
 export ENV=~/.shrc sh
 export TMPDIR=/tmp
-export HISTSIZE=100000
+export HISTSIZE=1000000
 
 alias tps='. tps'
 
