@@ -129,7 +129,7 @@ augroup ShSpecial
 	au FileType sh setlocal makeprg=sh\ -n\ %
 augroup END
 
-iabbrev ddd printf("%s():%d\n", __func__, __LINE__)
+iabbrev ddd fprintf(stderr, "%s():%d\n", __func__, __LINE__)
 augroup quickfix
     au!
     " Automatic location/quickfix window
