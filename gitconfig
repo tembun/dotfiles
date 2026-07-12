@@ -77,8 +77,6 @@
 	deltaCacheSize = 2047m
 	packSizeLimit = 2047m
 	windowMemory = 2047m
-[pull]
-	ff = only
 [credential "https://github.com"]
 	helper =
 	helper = !/usr/local/bin/gh auth git-credential
