@@ -36,6 +36,7 @@
 	flict = diff --check
 	no = branch --no-merged
 	ignr = check-ignore
+	info = ll -n 1
 [credential]
 	helper = store
 [push]
