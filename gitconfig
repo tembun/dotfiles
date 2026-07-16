@@ -30,8 +30,8 @@
 	fix = "!f() { t=/tmp/__gitfix; printf \"\n\nFixes:	${@}\" >${t}; git commit --template ${t}; rm -f ${t}; }; f"
 	diffc = diff --cached
 	difft = diff-tree --name-status -r
-	cnt = rev-list --count
-	fnd = log --grep
+	counnt = rev-list --count
+	find = log --grep
 	cat = cat-file -p
 	flict = diff --check
 	no = branch --no-merged
