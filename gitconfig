@@ -19,6 +19,7 @@
 	s = status --short
 	ss = ! git s | grep '^[AMDR]'
 	br = branch
+	brc = branch --show-current
 	co = checkout
 	ll = log --oneline
 	p = push origin HEAD
