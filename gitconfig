@@ -22,6 +22,7 @@
 	brc = branch --show-current
 	co = checkout
 	ll = log --oneline
+	last = log --oneline -n 1
 	p = push origin HEAD
 	f = pull origin HEAD
 	alt = commit --amend --no-edit
