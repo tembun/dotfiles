@@ -38,7 +38,7 @@
 	flict = diff --check
 	no = branch --no-merged
 	ignr = check-ignore
-	info = log -n 1 --pretty='%h ("%s")'
+	info = log -n 1 --pretty='%h (\"%s\")'
 [credential]
 	helper = store
 [push]
