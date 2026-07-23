@@ -121,6 +121,7 @@ noremap <leader>w :set nowrap!<CR>
 noremap <leader>n :norm
 noremap <C-n> :cn<CR>
 noremap <C-f> :cp<CR>
+noremap <C-m> :tabnew %<CR>
 
 " Invoke the file of the current buffer and open its output in new split.
 function! ExecFile()
