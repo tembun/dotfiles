@@ -100,7 +100,18 @@ noremap <leader>/ :Commentary<CR>
 "        	messy characters in random places.  So force a full screen
 "        	redraw every time quickfix window is opened.
 " grep! 	grep, but don't jump to the first match right away
-command! -nargs=+ Grep execute "let @/ = '<args>' |set hlsearch |silent grep! -rI <args> ."
+command! -nargs=+ Grep call s:Grep(<q-args>)
+function! s:Grep(args) abort
+    let parts = split(a:args)
+    let @/ = parts[0]
+    set hlsearch
+    if len(parts) == 1
+        execute 'grep! -rI' a:args '.'
+    else
+        execute 'grep! -rI' a:args
+    endif
+    copen
+endfunction
 noremap <leader>g :Grep<space>
 
 noremap <leader>t :tabe<CR>
