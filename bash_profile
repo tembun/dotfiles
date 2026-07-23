@@ -7,3 +7,9 @@ if [ ! -f "${CHECKGITREPO_LOCKFILE}" ]; then
 	"${CHECKGITREPO}" ${CHECKGITREPO_LIST}
 	touch "${CHECKGITREPO_LOCKFILE}"
 fi
+
+# Source completions for various programs
+. /usr/local/share/bash-completion/completions/git
+. /usr/local/share/bash-completion/completions/gh
+. /usr/local/share/bash-completion/completions/mpv
+. /usr/local/share/bash-completion/completions/wg
