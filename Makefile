@@ -4,6 +4,7 @@ HOME:sh= echo "${HOME}"
 .error "HOME environment variable is not set"
 .endif
 PREFIX= ${HOME}
+# XXX install(1) is not POSIX
 INSTALL= install
 INSTALL_SYMLINK_OPT= -l s
 
