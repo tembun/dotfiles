@@ -5,14 +5,13 @@
 #
 # see also sh(1), environ(7).
 
-# # csh like history on arrow up and down
-# bind ^[[A ed-search-prev-history
-# bind ^[[B ed-search-next-history
-
-# # ctrl+arrow allow to jump from words to words
-# bind "\\e[1;5C" em-next-word
-# bind "\\e[1;5D" ed-prev-word
-#alias history='fc -l'
+# Hijacked from subr.sh
+check_prog()
+{
+	local prog="${1}"
+	local path=$(which "${prog}" 2>/dev/null)
+	test -n "${path}" && test -x "${path}"
+}
 
 # set prompt: ``username@hostname:directory$ ''
 export PS1="\u@\h:\w\\$ "
@@ -37,6 +36,13 @@ export FZF_DEFAULT_OPTS="--walker-root=. /etc /usr/include /usr/local/etc /usr/l
 
 # misc/qt6ct is used to set a dark theme for Qt applications
 export QT_QPA_PLATFORMTHEME=qt6ct
+
+# textproc/rg
+if check_prog rg; then
+	# There's no default config file, you have to manually declare it
+	export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
+	check_prog rgpg && alias rg=rgpg
+fi
 
 # sysutils/tmux specific
 # tux() -- tmux create-or-attach
