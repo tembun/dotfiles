@@ -1,10 +1,3 @@
-# .shrc - bourne shell startup file
-#
-# This file will be used if the shell is invoked for interactive use and
-# the environment variable ENV is set to this file.
-#
-# see also sh(1), environ(7).
-
 # Hijacked from subr.sh
 check_prog()
 {
