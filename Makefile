@@ -8,6 +8,8 @@ PREFIX= ${HOME}
 INSTALL= install
 INSTALL_SYMLINK_OPT= -l s
 
+LINK_shrc= bashrc
+
 all: ${SRCS:C/^${.CURDIR}\///}
 
 .for src in ${SRCS}
