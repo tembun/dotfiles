@@ -1,4 +1,5 @@
-test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
+SHRC="${HOME}/.bashrc"
+test -f "${SHRC}" && . "${SHRC}"
 
 CHECKGITREPO="${HOME}/scripts/checkgitrepo"
 CHECKGITREPO_LIST="/etc /usr/local/etc /usr/src ${HOME}/dotfiles"
