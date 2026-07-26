@@ -8,16 +8,29 @@ PREFIX= ${HOME}
 INSTALL= install
 INSTALL_SYMLINK_OPT= -l s
 
-all: ${SRCS:C/^${.CURDIR}\//./}
+all: ${SRCS:C/^${.CURDIR}\///}
 
 .for src in ${SRCS}
-dest=${src:C/^${.CURDIR}\//./}
-${PREFIX}/${dest}: ${src}
+src_handle=${src:C/^${.CURDIR}\///}
+src_dest=.${src_handle}
+main_target=${PREFIX}/${src_dest}
+${main_target}: ${src}
 	@mkdir -p ${.TARGET:H}
 	${INSTALL} ${INSTALL_SYMLINK_OPT} ${.ALLSRC} ${.TARGET}
 
-.PHONY: ${dest}
-${dest}: ${PREFIX}/${dest}
+link_targets=
+link_name=
+.if defined(LINK_${src_handle})
+link_targets=${LINK_${src_handle}:C/^/${PREFIX}\/./}
+.for link_target in ${link_targets}
+${link_target}: ${src}
+	@mkdir -p ${.TARGET:H}
+	${INSTALL} ${INSTALL_SYMLINK_OPT} ${.ALLSRC} ${.TARGET}
+.endfor
+.endif
+
+.PHONY: ${src_handle}
+${src_handle}: ${main_target} ${link_targets}
 .endfor
 
 clean: ${SRCS}
