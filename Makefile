@@ -21,7 +21,6 @@ ${main_target}: ${src}
 	${INSTALL} ${INSTALL_SYMLINK_OPT} ${.ALLSRC} ${.TARGET}
 
 link_targets=
-link_name=
 .if defined(LINK_${src_handle})
 link_targets=${LINK_${src_handle}:C/^/${PREFIX}\/./}
 .for link_target in ${link_targets}
