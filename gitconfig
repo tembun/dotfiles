@@ -31,7 +31,6 @@
 	orig = log -n 1 ORIG_HEAD
 	origmsg = orig --pretty=%B
 	day = ll --since=midnight --author=temcbun --branches='*'
-	fix = "!f() { t=/tmp/__gitfix; printf \"\n\nFixes:	${@}\" >${t}; git commit --template ${t}; rm -f ${t}; }; f"
 	diffc = diff --cached
 	difft = diff-tree --name-status -r
 	counnt = rev-list --count
