@@ -21,6 +21,21 @@ export HISTSIZE=1000000
 
 alias tps='. tps'
 
+# Alias first existing 'doroot' program to 'sr'.
+# I'd like to call it 'dr' as short for 'do root', but it's not convenient to
+# type.  'sr' is easier to type, and also it is a name for an old CSRG command
+# meaning 'single root'.
+DOROOT_MDO="mdo"
+DOROOT_DOAS="doas"
+DOROOT_SUDO="sudo"
+DOROOTS="${DOROOT_MDO} ${DOROOT_DOAS} ${DOROOT_SUDO}"
+for doroot in ${DOROOTS}; do
+	if which "${doroot}" >/dev/null 2>&1; then
+		alias sr="${doroot}"
+		break
+	fi
+done
+
 # shells/bash specific
 export PROMPT_COMMAND='history -a; history -r'
 
