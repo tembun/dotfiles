@@ -42,8 +42,6 @@
 	info = log -n 1 --pretty='%h (\"%s\")'
 [credential]
 	helper = store
-[push]
-	default = nothing
 [color]
 	ui=true
 [color "diff"]
