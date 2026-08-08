@@ -21,6 +21,11 @@ bash_special()
 	# expand_aliases shell option is set using shopt.
 	# I need it to be able to use aliases in emacs M-!.
 	shopt -s expand_aliases
+	# bash(1) has a built-in `time` keyword, which is different from the
+	# time(1) program.
+	if check_prog time; then
+		alias time=$(which time)
+	fi
 }
 
 # set prompt: ``username@hostname:directory$ ''
