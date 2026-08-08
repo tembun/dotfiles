@@ -5,6 +5,23 @@ check_prog()
 	local path=$(which "${prog}" 2>/dev/null)
 	test -n "${path}" && test -x "${path}"
 }
+get_shell()
+{
+	basename "${SHELL}"
+}
+check_bash()
+{
+	test $(get_shell) = "bash"
+}
+
+bash_special()
+{
+	check_bash || return 0
+	# Aliases are not expanded when the shell is not interactive, unless the
+	# expand_aliases shell option is set using shopt.
+	# I need it to be able to use aliases in emacs M-!.
+	shopt -s expand_aliases
+}
 
 # set prompt: ``username@hostname:directory$ ''
 export PS1="\u@\h:\w\\$ "
@@ -85,3 +102,4 @@ tux()
 	esac
 }
 
+bash_special
