@@ -226,6 +226,7 @@
 (global-set-key (kbd "C-<return>") #'default-indent-new-line)
 (put 'downcase-region 'disabled nil)
 ;; Duplicating the line
+;;
 (defun ed/duplicate-current-line ()
   "Duplicate the current line to the bottom"
   (interactive)
