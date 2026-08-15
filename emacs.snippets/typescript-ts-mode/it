@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: it() test case
+# key: it
+# expand-env: ((yas-indent-line 'fixed))
+# --
+it("$1", () => {
+	 expect($0).toBe()
+})

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: describe() test suite
+# key: desc
+# expand-env :((yas-indent-line 'fixed))
+# --
+describe("$1", () => {
+	$0
+})
