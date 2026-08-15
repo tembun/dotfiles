@@ -1,0 +1,365 @@
+;; Simple package manager
+;;
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(defvar pkg/fresh nil)
+(defun pkg/update ()
+  (when (not pkg/fresh)
+    (setq pkg/fresh t)
+    (package-refresh-contents)))
+(defun pkg/_require (pkg)
+  (when (not (package-installed-p pkg))
+    (pkg/update)
+    (package-install pkg))
+  (require pkg))
+(defun pkg/require (&rest pkgs)
+  (dolist (pkg pkgs)
+    (pkg/_require pkg)))
+
+;; Files
+;;
+;; Put changes done from the editor into a separate file
+(setq custom-file "~/.emacs.d/custom.el")
+;; Various credentials
+(setq auth-sources '("~/.authinfo"))
+;; Backups, auto-saves, locks
+;;
+;; Put backups and auto-saves in ~/emacs.d and lock files - in /tmp.
+(setq user-backup-dir (concat user-emacs-directory ".backups"))
+(setq backup-directory-alist `((".*" . ,(expand-file-name user-backup-dir))))
+(setq backup-by-copying t)
+(setq auto-save-file-name-transforms
+      `((".*" ,(expand-file-name user-backup-dir t))))
+(setq lock-file-name-transforms '(("\\`/.*/\\([^/]+\\)\\'" "/tmp/\\1" t)))
+
+;; Buffers
+;;
+;; Scratch buffer
+(global-set-key (kbd "C-c C-s") #'scratch-buffer)
+
+;; Appearance
+;;
+;; Remove bells and whistles
+(setq inhibit-startup-screen t)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(blink-cursor-mode 0)
+;; Theme
+;;
+(pkg/require 'gruber-darker-theme)
+(load-theme 'gruber-darker t)
+;; (gruber-darker special): make a fringe the same color as the current line
+;; number so that it's easier to notice it.
+(set-face-attribute 'fringe
+		    nil
+		    :foreground (face-foreground 'line-number-current-line))
+;; Font
+;;
+(defun font/set ()
+  (interactive)
+  (set-frame-font
+   "-*-terminus-bold-normal-normal-*-18-*-*-*-*-*-iso10646-1"
+   nil t))
+(add-hook 'emacs-startup-hook #'font/set)
+;; Line numbers
+;;
+;; 'visual is the same as 'relative, but counts visual screen rows - it's more
+;; practical for jumping around.
+(setq-default display-line-numbers 'visual)
+;; Mode line
+;;
+;; Without that the last character of right-aligned screen goes off the screen.
+(setq mode-line-right-align-edge 'right-fringe)
+(setq-default mode-line-format
+	      ;; Writable and read-only indicators
+              '((:eval mode-line-modified)
+		" "
+		;; A buffer name with it's major mode
+                "%b <"
+		(:eval (format-mode-line mode-name))
+		">"
+		" "
+		;; Version control system name and its current branch
+                (10 (vc-mode vc-mode))
+		;; Align everything below to the right edge
+		;;
+		mode-line-format-right-align
+ 		;; Current line, total number of lines and the current column
+		"(%l/"
+                (:eval
+                 (save-restriction
+                   (widen)
+                   (number-to-string
+                    (count-lines (point-min) (point-max)))))
+                ";%c)"
+		" "
+		;; Current date and time
+                (:eval
+                 (format-time-string
+                  "%a %d %b %H:%M"
+                  (current-time)))
+		))
+;; To make the date and time accurate, update the modeline every second.
+(run-with-timer 0 1 #'(lambda() (force-mode-line-update t)))
+
+;; Text appearance
+;;
+;; whitespace-mode
+(global-set-key (kbd "C-c C-w") #'whitespace-mode)
+;;
+;; Highlighting text anchors like XXX, TODO, KLUDGE and so on.
+(defface face/text-anchor-urgent
+  '((t (:foreground "white"
+		    :background "red"
+		    :weight bold)))
+  "Face for urgent text anchors like XXX, TODO and so on.")
+(defface face/text-anchor-info
+  '((t (:foreground "black"
+		    :background "orange"
+		    :weight bold)))
+  "Face for info text anchors like NOTE, KLUDGE and so on.")
+(defvar vis/hl-text-anchors
+  '(("\\<\\(XXX\\|TODO\\|FIXME\\|BUG\\)\\>" 1 'face/text-anchor-urgent prepend)
+    ("\\<\\(NOTE\\|HACK\\|KLUDGE\\|WARN\\)\\>" 1 'face/text-anchor-info prepend)))
+(define-minor-mode vis/hl-text-anchors-local-mode
+  "Highlight text anchors like XXX, TODO, KLUDGE and so on in the buffer."
+  :global t
+  (if vis/hl-text-anchors-local-mode
+      (font-lock-add-keywords nil vis/hl-text-anchors)
+    (font-lock-remove-keywords nil vis/hl-text-anchors))
+  (when (bound-and-true-p font-lock-mode)
+    (if (fboundp 'font-lock-flush)
+	(font-lock-flush)
+      (with-no-warnings (font-lock-fontify-buffer)))))
+(add-hook 'after-change-major-mode-hook #'vis/hl-text-anchors-local-mode)
+;; Rainbow mode (display colors by their names or codes)
+(pkg/require 'rainbow-mode)
+(add-hook 'prog-mode-hook #'rainbow-mode)
+
+;; Text style
+;;
+;; Indentation
+(setq style/tab-width 8)
+(setq-default indent-tabs-mode t)
+(setq-default tab-width style/tab-width)
+(setq style/indent-offset 8)
+(setq style/second-indent-offset 4)
+(setq-default standard-indent style/indent-offset)
+(defun style/setup-indent ()
+  (interactive)
+  (setq-local indent-tabs-mode t)
+  (setq-local tab-width style/tab-width))
+;; Auto line wrapping
+;;
+(auto-fill-mode 1)
+(setq-default fill-column 80)
+(add-hook 'after-change-major-mode-hook #'auto-fill-mode)
+(setq require-final-newline t)
+
+;; Navigation
+;;
+;; dired
+(require 'dired)
+(pkg/require 'dired-preview)
+(setq dired-mode t)
+(setq dired-listing-switches "-lah")
+(global-set-key (kbd "C-x C-d") #'dired)
+(setq dired-create-destination-dirs "always")
+(setq dired-create-destination-dirs-on-trailing-dirsep t)
+(define-key dired-mode-map (kbd "b") #'dired-up-directory)
+(define-key dired-mode-map (kbd "V") #'dired-preview-mode)
+;; Scrolling
+;;
+;; Custom scrolling steps
+(setq scroll/step-size 12)
+(defun scroll/up ()
+  (interactive)
+  (scroll-up-command scroll/step-size))
+(defun scroll/down ()
+  (interactive)
+  (scroll-down-command scroll/step-size))
+(global-set-key (kbd "C-v") #'scroll/up)
+(global-set-key (kbd "M-v") #'scroll/down)
+;; Selecting regions
+;;
+;; expand-region
+(pkg/require 'expand-region)
+(global-set-key (kbd "C-M-SPC") #'er/expand-region)
+(global-set-key (kbd "M-SPC") #'er/contract-region)
+;; Undo/redo
+;;
+(pkg/require 'undo-tree)
+(global-undo-tree-mode 1)
+(setq undo-tree-history-directory-alist
+      `(("." . ,(concat user-emacs-directory ".undo-tree"))))
+(global-set-key (kbd "C-M-/") #'undo-tree-redo)
+
+;; Searching
+;;
+;; ido mode
+(ido-mode t)
+(ido-everywhere t)
+(ido-ubiquitous-mode t)
+(setq ido-enable-flex-matching t)
+(pkg/require 'smex 'ido-completing-read+)
+;; smex (ido mode for M-x)
+;;
+(global-set-key (kbd "M-x") #'smex)
+(global-set-key (kbd "M-X") #'smex-major-mode-commands)
+;; which-key-mode
+(require 'which-key)
+(which-key-mode)
+;; helm (incremental searching in files)
+;;
+(pkg/require 'helm)
+(setq helm-follow-mode-persistent t)
+(global-set-key (kbd "C-x f") #'helm-do-grep-ag)
+(global-set-key (kbd "C-x C-x") #'helm-resume)
+
+;; Text editing
+;;
+(add-hook 'after-change-major-mode-hook
+	  #'(lambda()
+	      (local-set-key (kbd "DEL") #'delete-backward-char)))
+(global-set-key (kbd "C-M-;") #'comment-line)
+(global-set-key (kbd "C-<return>") #'default-indent-new-line)
+(put 'downcase-region 'disabled nil)
+;; Duplicating the line
+(defun ed/duplicate-current-line ()
+  "Duplicate the current line to the bottom"
+  (interactive)
+  (let ((column (- (point) (point-at-bol)))
+	(line (let ((s (thing-at-point 'line t)))
+		(if s (string-remove-suffix "\n" s) ""))))
+    (move-end-of-line 1)
+    (newline)
+    (insert line)
+    (move-beginning-of-line 1)
+    (forward-char column)))
+(global-set-key (kbd "M-,") #'ed/duplicate-current-line)
+;; Joining the lines
+;;
+(defun ed/join-lines ()
+  "Join all bottom lines with the current one."
+  (interactive)
+  (next-line)
+  (delete-indentation))
+(global-set-key (kbd "M-j") #'ed/join-lines)
+;; Killing
+;;
+(defun ed/kill-whole-visual-line ()
+  "Kill the whole visual line."
+  (interactive)
+  (beginning-of-visual-line)
+  (kill-visual-line)
+  (delete-char 1))
+(global-set-key (kbd "C-k") #'ed/kill-whole-visual-line)
+(global-set-key (kbd "M-k") #'kill-visual-line)
+(defun ed/kill-whole-region (start end)
+  "Kill the whole region: if the simple killing leaves an empty line - kill it."
+  (interactive "r")
+  (kill-region start end)
+  ;; If we've got an empty line after killing - remove that line
+  (when (= (line-beginning-position) (line-end-position))
+    (delete-char 1)))
+(global-set-key (kbd "C-w") #'ed/kill-whole-region)
+;; Yanking
+;;
+(defun ed/yank-no-newline ()
+  "Yank without trailing newline."
+  (interactive)
+  (yank)
+  (when (eq (char-before) ?\n)
+    (delete-char 1)))
+(global-set-key (kbd "C-M-y") #'ed/yank-no-newline)
+(defun ed/yank-indent ()
+  "Indent the yanked region immediately after yanking.  It allows to copy a
+hunk from one indentaion level, paste it into another indentation level and
+don't have the formatting messed up."
+  (interactive)
+  (let ((start (point)))
+    (ed/yank-no-newline)
+    (indent-region start (point))))
+(global-set-key (kbd "C-y") #'ed/yank-indent)
+;; Autocompletion
+;;
+(pkg/require 'company)
+(global-company-mode t)
+(setq company-idle-delay nil)
+(global-set-key (kbd "M-n") #'company-complete)
+;; Snippets
+;;
+;; yasnippet
+(pkg/require 'yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.snippets"))
+;; Allow nested snippets
+(setq yas-triggers-in-field t)
+(yas-global-mode 1)
+;; multiple-cursors
+;;
+(pkg/require 'multiple-cursors)
+(global-set-key (kbd "C-M-<return>") #'mc/edit-lines)
+(global-set-key (kbd "C-M-,") #'mc/mark-previous-like-this)
+(global-set-key (kbd "C-M-.") #'mc/mark-next-like-this)
+
+;; Major modes
+;;
+;; C
+(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+(defun c/style ()
+  (style/setup-indent)
+  (setq-local c-ts-mode-indent-offset style/tab-width)
+  (setq-local c-ts-mode-indent-style 'bsd))
+(add-hook 'c-ts-mode-hook #'c/style)
+
+;; sh
+;;
+(add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode))
+(defun sh/style ()
+  (style/setup-indent)
+  (setq-local sh-basic-offset style/tab-width)
+  (setq-local sh-indent-for-case-label 0)
+  (setq-local sh-indent-for-case-alt '+)
+  (setq-local sh-indent-for-continuation '*)
+  (setq-local sh-basic-offset style/tab-width))
+(defun sh/setup ()
+  (setq sh-shell-file "/bin/sh")
+  (sh/style))
+(add-hook 'bash-ts-mode-hook #'sh/setup)
+
+;; JSON
+;;
+(add-to-list 'major-mode-remap-alist '(js-json-mode . json-ts-mode))
+(defun json/style ()
+  (style/setup-indent)
+  (setq-local json-ts-mode-indent-offset style/indent-offset))
+(add-hook 'json-ts-mode-hook #'json/style)
+
+;; JavaScript
+;;
+(add-to-list 'major-mode-remap-alist '(js-mode . js-ts-mode))
+(defun js/style ()
+  (style/setup-indent)
+  (setq-local js-indent-level style/indent-offset))
+(defun js/setup ()
+  (js/style))
+(add-hook 'js-ts-mode-hook #'js/setup)
+
+;; TypeScript
+;;
+(add-to-list 'major-mode-remap-alist '(typescript-mode . typescript-ts-mode))
+(add-hook 'typescript-ts-mode-hook #'eglot-ensure)
+(defun ts/style ()
+  (style/setup-indent)
+  (setq-local typescript-ts-mode-indent-offset style/indent-offset))
+(defun ts/setup ()
+  (ts/style))
+(add-hook 'typescript-ts-mode-hook #'ts/setup)
+
+;; Magit
+;;
+(pkg/require 'magit 'magit-ido 'magit-gh 'magit-pre-commit 'forge)
+(defun magit/style ()
+  (setq-local fill-column 72))
+(add-hook 'git-commit-mode-hook #'magit/style)
+(define-key magit-status-mode-map (kbd "M-RET") #'forge-checkout-this-pullreq)
