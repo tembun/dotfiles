@@ -1,46 +1,68 @@
-call plug#begin()
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'itchyny/vim-highlighturl'
-Plug 'tpope/vim-commentary'
-call plug#end()
-runtime! ftplugin/man.vim
+let vimdir = expand('$HOME/.vim/')
+if !isdirectory(vimdir)
+	call mkdir(vimdir, 'p')
+endif
 
+" Install third-party plugins
+"
+if filereadable(vimdir . 'autoload/plug.vim')
+	call plug#begin()
+	Plug 'junegunn/fzf'		" fzf native plugin
+	Plug 'junegunn/fzf.vim'		" vim fzf integration
+	Plug 'itchyny/vim-highlighturl'	" Highligh urls
+	Plug 'tpope/vim-commentary'	" Easily comment source code
+	Plug 'tpope/vim-fugitive'	" vim git integration
+	Plug 'prabirshrestha/vim-lsp'	" vim LSP integration
+	call plug#end()
+endif
+
+" Base settings
+"
 set autoindent
 set autowrite 		" Automatically save the file when other program modifies it
 set backupcopy=yes
-set directory=$HOME/.vimswap//
-set display=lastline 	" Display as much as possible of the last line even if it doesn't fit
-set foldmethod=manual 	" Folds must be created manually.
-set formatoptions=tcq
+set completeopt=menuone	" Show autocompletion menu even for a single match
+set display=lastline 	" Display as much as possible of the last line
+set exrc
+set foldmethod=manual 	" Folds must be created manually
+set formatoptions=trcq
 set hidden
 set history=10000
-set hlsearch 		" Highlight search terms.
+set hlsearch 		" Highlight search terms
+set ignorecase
 set incsearch 		" Set incremental search
 set laststatus=2 	" Always display filename
-set lbr! 		" Wrap lines at word boundaries.
-set number
-set relativenumber
-set ruler 		" Display my position in the bottom right of the window.
-set scrolloff=5 	" Keep a minimum of 5 lines above and below the cursor.
-set shiftwidth=8
+set lbr! 		" Wrap lines at word boundaries
+set mouse=		" Disable mouse support
+set noesckeys
+set number		" Display line numbers on the left side
+set relativenumber	" Make line numbers relative to the line
+set ruler 		" Display my position in the bottom right of the window
+set scrolloff=5 	" Keep a minimum of 5 lines above and below the cursor
+set shiftwidth=8	" Applies to =, > and < alignment
+set signcolumn=no
+set smartcase
 set smartindent
-set statusline+=%F%10v 	" Display full filepath
-set tabstop=8
-set textwidth=80
+set splitbelow
+set splitright
+set statusline=%F%10v 	" Display filepath and screen column number in status line
+set tabstop=8		" Tab width for a tab stop
+set textwidth=80	" The width at which switch to a new line
 set wrap
 set wrapscan 		" Come back to the first search match after the last one
-" Settings for autocompletion menu (C-n and C-p).
-" menuone - show autocompletion menu even if there's only one match
-" noinset - effectively it allows to get back to your original text when
-"           cancelling the autocomplete with C-e.  It still does insert text
-"           under the cursor while cycling through autocomplete options.
-set completeopt=menuone
 
+let swapdir = vimdir . '.swap'
+if !isdirectory(swapdir)
+	call mkdir(swapdir, 'p', 0770)
+endif
+let &directory = swapdir . '//'
+
+" Colorizing things
+"
 set t_Co=256
 set t_md=
 syntax on
-colorscheme monochrome
+color monochrome
 hi ExtraWhitespace ctermbg=130
 match ExtraWhitespace /[ 	]\+$/
 au BufWinEnter * match ExtraWhitespace /[ 	]\+$/
@@ -50,26 +72,27 @@ au BufWinLeave * call clearmatches()
 hi LineNr term=NONE cterm=NONE
 let g:highlighturl_ctermfg = 184
 let g:highlighturl_underline = 0
-set splitbelow
-set splitright
 hi MatchParen ctermfg=226 ctermbg=16
 
-set mouse=
-set noesckeys
+" Mappings
+"
 
-inoremap jk <esc>
-
-" Clear the highlighting after the search/substitution
-nnoremap <silent> <C-L> :nohlsearch<CR>
-
-" Frequent typos.
-command W write
-command Q quit
-command Wq write | quit
-command WQ write | quit
-
+" Classic :)
+inoremap jk <ESC>
 map Y y$
-command Eva .write !sh
+nnoremap <silent> <C-L> :nohls<CR>|	" Clear highlight after search/replace
+
+" Resizing the windows
+nnoremap <C-Up> :res +2<CR>
+nnoremap <C-Down> :res -2<CR>
+nnoremap <C-Left> :vert res +2<CR>
+nnoremap <C-Right> :ver res -2<CR>
+
+" Frequent typos
+com! W write
+com! Q quit
+com! Wq write | quit
+com! WQ write | quit
 
 filetype on
 filetype plugin on
@@ -77,54 +100,71 @@ filetype indent on
 
 " Custom commands
 "
-" Open fzf files
-noremap <C-p> :Files<CR>
-" Open fzf openned buffers
-noremap <leader>b :Buffers<CR>
+nnoremap <C-p> :Files<CR>|	" fzf through all files in the search path
+noremap <leader>c :Buffers<CR>|	" fzf through all opened buffers
 let g:fzf_preview_window = []
-" The fzf search window should be located at the bottom and take up 10 rows
-let g:fzf_layout = { 'down': '10' }
+let g:fzf_layout = { 'down': '10' }	" Where fzf window is located
 
-" Comment/uncomment lines
-noremap <leader>/ :Commentary<CR>
+noremap <leader>/ :Commentary<CR>|	" {Un}comment lines
 
-" grep pattern, open results in a quickfix window with highlighting.
-" -nargs=+	Custom command Grep may take any number of arguments
-" let @/	Save rhs into register '/' (last search pattern register)
-" '<args>'	The arguments, passed into a Grep command
-" set hlsearch	We saved our search pattern into '/'; this would highlight it.
-" silent	Run command w/o result message box that pops up by default.
-"       	The crucial part for it to work properly is a 'redraw!' part
-"        	in the QuickFixCmdPost (see below), because I figured that when
-"        	grepping in silent mode, the real text buffer gets some weird
-"        	messy characters in random places.  So force a full screen
-"        	redraw every time quickfix window is opened.
-" grep! 	grep, but don't jump to the first match right away
-command! -nargs=+ Grep call s:Grep(<q-args>)
-function! s:Grep(args) abort
-    let parts = split(a:args)
-    let @/ = parts[0]
-    set hlsearch
-    if len(parts) == 1
-        execute 'grep! -rI' a:args '.'
-    else
-        execute 'grep! -rI' a:args
-    endif
-    copen
-endfunction
-noremap <leader>g :Grep<space>
+set grepprg=rg\ --vimgrep\ --smart-case
+com! -nargs=+ Sea call Sea(<q-args>)
+func! Sea(args) abort
+	" Remember the buffer and the position we were at when we initiated the
+	" search.  If after jumping through the results (which changes our
+	" active buffer) we want to get back to the place where we were (to
+	" continue the work) we can make use of SeaOrig().
+	let g:grep_origin = [bufnr('%'), getcurpos()]
+	let parts = split(a:args)
+	let @/ = parts[0]
+	set hlsearch
+	if len(parts) == 1
+		execute 'silent grep! --vimgrep --color=never --smart-case' shellescape(parts[0]) '.'
+	else
+		execute 'silent grep! --vimgrep --color=never --smart-case' a:args
+	endif
+	copen
+endfunc
+func! SeaOrig() abort
+	execute 'buffer' g:grep_origin[0]
+	call setpos('.', g:grep_origin[1])
+endfunc
+nnoremap <silent> <leader>p :call SeaOrig()<CR>
 
-noremap <leader>t :tabe<CR>
-noremap <leader>f :make<CR>
-noremap <leader>q :only<CR>
-noremap <leader>w :set nowrap!<CR>
-noremap <leader>n :norm
-noremap <C-n> :cn<CR>
-noremap <C-f> :cp<CR>
-noremap <C-k> :tabnew %<CR>
+nnoremap <leader>f :Sea<Space>
+nnoremap <leader>* :Sea<Space><C-R><C-W><CR>|	" Search the word under cursor
+
+nnoremap <silent> <leader>t :tabe<CR>|		" Open a new tab
+nnoremap <silent> <leader>z :tabc<CR>|		" Completely close the tab
+nnoremap <silent> <leader>\ :make<CR>|		" make(1)
+nnoremap <silent> <leader>q :only<CR>|		" Close all other windows
+nnoremap <silent> <leader>w :set nowrap!<CR>|	" Toggle visual line wrapping
+nnoremap <leader>n :norm|
+nnoremap <silent> <C-n> :cn<CR>|		" Open next quickfix item
+nnoremap <silent> <C-f> :cp<CR>|		" Open previous quickfix item
+nnoremap <silent> <C-e> :cfirst<CR>|		" Open first quickfix item
+nnoremap <silent> <C-a> :clast<CR>|		" Open last quickfix item
+nnoremap <silent> <C-k> :tabnew %<CR>|		" Open current window in tab
+
+" TS LSP
+" Go to definition
+nmap gd <plug>(lsp-definition)
+" Find references
+nmap gr <plug>(lsp-references)
+" Hover documentation
+nmap K <plug>(lsp-hover)
+" Rename symbol
+nmap <F2> <plug>(lsp-rename)
+" Next/previous diagnostic
+nmap ]d <plug>(lsp-next-diagnostic)
+nmap [d <plug>(lsp-previous-diagnostic)
+nnoremap <C-i> <plug>(lsp-code-action)
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_document_highlight_enabled = 0
 
 " Invoke the file of the current buffer and open its output in new split.
-function! ExecFile()
+func! ExecFile()
 	let f = expand('%:p')
 	let out = systemlist(f)
 	if empty(out)
@@ -133,21 +173,58 @@ function! ExecFile()
 	belowright 15new
 	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
 	call setline(1, out)
-endfunction
-command! ExecFile call ExecFile()
+endfunc
+com! ExecFile call ExecFile()
 noremap <leader>e :ExecFile<CR>
-augroup ShSpecial
+aug ShSpecial
 	au!
 	" Check shell script syntax (current buffer)
-	au FileType sh setlocal errorformat=%f:\ %l:\ %m
-	au FileType sh setlocal makeprg=sh\ -n\ %
-augroup END
+	au! filetype sh setlocal errorformat=%f:\ %l:\ %m
+	au! filetype sh setlocal makeprg=sh\ -n\ %
+aug END
+
+
+" prabirshrestha/vim-lsp
+"
+if executable('typescript-language-server')
+	aug LspTypeScript
+		au!
+		au User lsp_setup call lsp#register_server({
+					\ 'name': 'typescript-language-server',
+					\ 'cmd': {server_info->[
+					\     'typescript-language-server',
+					\     '--stdio'
+					\ ]},
+					\ 'allowlist': ['typescript', 'typescriptreact', 'javascript', 'javascriptreact'],
+					\ })
+	aug END
+endif
+
+" tpope/vim-fugitive
+"
+func! GitLogLine()
+	let start = line("'<")
+	let end = line("'>")
+	execute "Git log -L" . start . "," . end . ":" . expand("%")
+endfunc
+
+nnoremap <leader>l :Git log -- %<CR>
+xnoremap <leader>l :<C-U>call GitLogLine()<CR>
+nnoremap <leader>d :Git diff %<CR>
+nnoremap <leader>1 :Git branch
+nnoremap <leader>s :Git<CR>
+nnoremap <leader>b :Git branch<CR>
+
+aug FugitiveMappings
+	au!
+	au filetype fugitive nnoremap <buffer> 00 :Git pop -q<CR>
+aug END
 
 iabbrev ddd fprintf(stderr, "%s():%d\n", __func__, __LINE__)
-augroup quickfix
-    au!
-    " Automatic location/quickfix window
-    " See comments regarding 'redraw!' in Grep command definition above.
-    au QuickFixCmdPost [^l]* 15cwindow |redraw!
-    au QuickFixCmdPost    l* lwindow
-augroup END
+aug quickfix
+	au!
+	" Automatic location/quickfix window
+	" See comments regarding 'redraw!' in Grep command definition above.
+	au QuickFixCmdPost [^l]* 15cwindow |redraw!
+	au QuickFixCmdPost    l* lwindow
+aug END
