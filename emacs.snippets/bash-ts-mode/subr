@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: subr.sh source line
+# key: subr
+# expand-env: ((yas-indent-line 'fixed))
+# --
+. "$(dirname $(readlink -f "\${0}"))/../libexec/subr.sh"
