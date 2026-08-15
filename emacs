@@ -1,6 +1,7 @@
 ; -*-emacs-lisp-*-
 ;; Simple package manager
 ;;
+(require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (defvar pkg/fresh nil)
 (defun pkg/update ()
