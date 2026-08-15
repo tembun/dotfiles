@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: crontab(5) prelude
+# key: cron
+# expand-env: ((yas-indent-line 'fixed))
+# --
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+#minute	hour	mday	month	wday	command
