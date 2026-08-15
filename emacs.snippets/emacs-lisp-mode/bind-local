@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: local key binding
+# key: bindl
+# expand-env: ((yas-indent-line 'fixed))
+# --
+(local-set-key (kbd "$1") #'$2)$0
