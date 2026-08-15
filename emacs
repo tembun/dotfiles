@@ -290,6 +290,13 @@ don't have the formatting messed up."
   (interactive)
   (ed/indent-after-function #'ed/yank-no-newline))
 (global-set-key (kbd "C-y") #'ed/yank-indent)
+(defun ed/yank-pop-no-newline ()
+  (interactive)
+  (ed/delete-newline-after-function #'yank-pop))
+(defun ed/yank-pop-indent ()
+  (interactive)
+  (ed/indent-after-function #'ed/yank-pop-no-newline))
+(global-set-key (kbd "M-y") #'ed/yank-pop-indent)
 ;; Autocompletion
 ;;
 (pkg/require 'company)
