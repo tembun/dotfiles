@@ -225,6 +225,18 @@
 (global-set-key (kbd "C-M-;") #'comment-line)
 (global-set-key (kbd "C-<return>") #'default-indent-new-line)
 (put 'downcase-region 'disabled nil)
+;; Helpers
+;;
+(defun ed/delete-if-newline ()
+  (when (eq (char-before) ?\n)
+    (delete-char 1)))
+(defun ed/delete-newline-after-function (func)
+  (funcall func)
+  (ed/delete-if-newline))
+(defun ed/indent-after-function (func)
+  (let ((start (point)))
+    (funcall func)
+    (indent-region start (point))))
 ;; Duplicating the line
 ;;
 (defun ed/duplicate-current-line ()
@@ -270,17 +282,13 @@
 (defun ed/yank-no-newline ()
   "Yank without trailing newline."
   (interactive)
-  (yank)
-  (when (eq (char-before) ?\n)
-    (delete-char 1)))
+  (ed/delete-newline-after-function #'yank))
 (defun ed/yank-indent ()
   "Indent the yanked region immediately after yanking.  It allows to copy a
 hunk from one indentaion level, paste it into another indentation level and
 don't have the formatting messed up."
   (interactive)
-  (let ((start (point)))
-    (ed/yank-no-newline)
-    (indent-region start (point))))
+  (ed/indent-after-function #'ed/yank-no-newline))
 (global-set-key (kbd "C-y") #'ed/yank-indent)
 ;; Autocompletion
 ;;
