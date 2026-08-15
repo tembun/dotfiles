@@ -27,12 +27,19 @@ daemon -o /dev/null emn ~/.emnrc.sink
 # immediately after startup doesn't always work correctly.
 (sleep 1 && batd) &
 
-if tmux has-session 2>/dev/null; then
-	tmux_cmd="tmux attach"
-else
-	tmux_cmd="tmux"
+if which emacs 2>/dev/null; then
+	start_cmd="emacs"
+elif which tmux 2>/dev/null; then
+	if tmux has-session 2>/dev/null; then
+		tmux_cmd="tmux attach"
+	else
+		tmux_cmd="tmux"
+	fi
+	start_cmd="xterm -e '${tmux_cmd}'"
 fi
 
 xrdb -load ~/.Xdefaults
-xterm -e $tmux_cmd &
+if [ -n "${start_cmd}" ]; then
+	${start_cmd} &
+fi
 exec dwm
