@@ -199,13 +199,14 @@
 ;;
 ;; ido mode
 (require 'ido)
+(pkg/require 'ido-completing-read+)
 (ido-mode t)
 (ido-everywhere t)
 (ido-ubiquitous-mode t)
 (setq ido-enable-flex-matching t)
-(pkg/require 'smex 'ido-completing-read+)
 ;; smex (ido mode for M-x)
 ;;
+(pkg/require 'smex)
 (global-set-key (kbd "M-x") #'smex)
 (global-set-key (kbd "M-X") #'smex-major-mode-commands)
 ;; which-key-mode
