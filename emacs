@@ -272,7 +272,6 @@
   (yank)
   (when (eq (char-before) ?\n)
     (delete-char 1)))
-(global-set-key (kbd "C-M-y") #'ed/yank-no-newline)
 (defun ed/yank-indent ()
   "Indent the yanked region immediately after yanking.  It allows to copy a
 hunk from one indentaion level, paste it into another indentation level and
