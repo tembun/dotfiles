@@ -1,0 +1,43 @@
+# -*- mode: snippet -*-
+# name: C program
+# key: c
+# expand-env: ((yas-indent-line 'fixed))
+# --
+CC =			cc
+CFLAGS_CHECK =		-Wall -Wpedantic
+CFLAGS =
+CFLAGS_RELEASE =	\${CFLAGS_CHECK} -O2
+CFLAGS_DBG =		-DDEBUG
+CFLAGS_DEBUG =		-g \${CFLAGS_DBG}
+CFLAGS_DEV =		\${CFLAGS_CHECK} \${CFLAGS_DBG}
+INCS =			-I/usr/local/include$4
+LIBS =			-L/usr/local/lib$5
+PREFIX =		/usr/local
+BINDIR =		bin
+BIN_MODE =		0755
+STRIP =			strip
+SRC =			$1.c$2
+HEADERS =		$3
+SRC_ALL =		\${SRC} \${HEADERS}
+BIN =			$1
+
+all: dev
+
+dev: \${SRC_ALL}
+	\${CC} \${CFLAGS} \${CFLAGS_DEV} -o \${BIN} \${INCS} \${LIBS} \${SRC}
+
+debug: \${SRC_ALL}
+	\${CC} \${CFLAGS} \${CFLAGS_DEBUG} -o \${BIN} \${INCS} \${LIBS} \${SRC}
+
+release: \${SRC_ALL}
+	\${CC} \${CFLAGS} \${CFLAGS_RELEASE} -o \${BIN} \${INCS} \${LIBS} \${SRC}
+
+install: release
+	mkdir -p \${PREFIX}/\${BINDIR}
+	cp \${BIN} \${PREFIX}/\${BINDIR}
+	@chmod \${BIN_MODE} \${PREFIX}/\${BINDIR}/\${BIN}
+	\${STRIP} \${PREFIX}/\${BINDIR}/\${BIN}
+
+.PHONY: clean
+clean:
+	rm -f \${BIN}
