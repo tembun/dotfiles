@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: stderr fprintf(3) statement
+# key: log
+# expand-env: ((yas-indent-line 'fixed))
+# --
+fprintf(stderr, "$1\n");$0
