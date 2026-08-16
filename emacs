@@ -324,12 +324,22 @@ don't have the formatting messed up."
 ;; Major modes
 ;;
 ;; C
-(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
 (defun c/style ()
   (style/setup-indent)
-  (setq-local c-ts-mode-indent-offset style/tab-width)
-  (setq-local c-ts-mode-indent-style 'bsd))
-(add-hook 'c-ts-mode-hook #'c/style)
+  (setq indent-tabs-mode t)
+  (setq-local c-tab-always-indent nil)
+  (c-set-style "bsd")
+  (c-set-offset 'arglist-close style/second-indent-offset)
+  (c-set-offset 'arglist-cont-nonempty style/second-indent-offset)
+  (c-set-offset 'defun-block-intro style/tab-width)
+  (c-set-offset 'inclass style/tab-width)
+  (c-set-offset 'knr-argdecl-intro style/tab-width)
+  (c-set-offset 'knr-argdecl-intro style/tab-width)
+  (c-set-offset 'statement-block-intro 0)
+  (c-set-offset 'statement-case-intro style/tab-width)
+  (c-set-offset 'substatement style/tab-width)
+  (c-set-offset 'substatement-open style/indent-offset))
+(add-hook 'c-mode-hook #'c/style)
 
 ;; sh
 ;;
