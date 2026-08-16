@@ -174,14 +174,24 @@
 ;;
 ;; Custom scrolling steps
 (setq scroll/step-size 12)
+(defun scroll/func-by-step-size (func)
+  (funcall func scroll/step-size))
 (defun scroll/up ()
   (interactive)
-  (scroll-up-command scroll/step-size))
+  (scroll/func-by-step-size #'scroll-up))
 (defun scroll/down ()
   (interactive)
-  (scroll-down-command scroll/step-size))
+  (scroll/func-by-step-size #'scroll-down))
+(defun scroll/up-other-window ()
+  (interactive)
+  (scroll/func-by-step-size #'scroll-other-window))
+(defun scroll/down-other-window ()
+  (interactive)
+  (scroll/func-by-step-size #'scroll-other-window-down))
 (global-set-key (kbd "C-v") #'scroll/up)
 (global-set-key (kbd "M-v") #'scroll/down)
+(global-set-key (kbd "C-i") #'scroll/up-other-window)
+(global-set-key (kbd "M-i") #'scroll/down-other-window)
 ;; Selecting regions
 ;;
 ;; expand-region
