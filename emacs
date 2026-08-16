@@ -230,12 +230,14 @@
 (put 'downcase-region 'disabled nil)
 ;; Helpers
 ;;
-(defun ed/delete-if-newline ()
-  (when (eq (char-before) ?\n)
+(defun ed/check-empty-line ()
+  (= (line-beginning-position) (line-end-position)))
+(defun ed/delete-if-empty-line ()
+  (when (ed/check-empty-line)
     (delete-char 1)))
-(defun ed/delete-newline-after-function (func)
+(defun ed/delete-empty-line-after-function (func)
   (funcall func)
-  (ed/delete-if-newline))
+  (ed/delete-if-empty-line))
 (defun ed/indent-after-function (func)
   (let ((start (point)))
     (funcall func)
@@ -267,25 +269,25 @@
 (defun ed/kill-whole-visual-line ()
   "Kill the whole visual line."
   (interactive)
-  (beginning-of-visual-line)
-  (kill-visual-line)
-  (delete-char 1))
+  (if (ed/check-empty-line)
+      (kill-whole-line)
+      (beginning-of-visual-line)
+      (ed/delete-empty-line-after-function #'kill-visual-line)))
 (global-set-key (kbd "C-k") #'ed/kill-whole-visual-line)
 (global-set-key (kbd "M-k") #'kill-visual-line)
 (defun ed/kill-whole-region (start end)
   "Kill the whole region: if the simple killing leaves an empty line - kill it."
   (interactive "r")
-  (kill-region start end)
-  ;; If we've got an empty line after killing - remove that line
-  (when (= (line-beginning-position) (line-end-position))
-    (delete-char 1)))
+  (ed/delete-empty-line-after-function
+   #'(lambda ()
+       (kill-region start end))))
 (global-set-key (kbd "C-w") #'ed/kill-whole-region)
 ;; Yanking
 ;;
 (defun ed/yank-no-newline ()
   "Yank without trailing newline."
   (interactive)
-  (ed/delete-newline-after-function #'yank))
+  (ed/delete-empty-line-after-function #'yank))
 (defun ed/yank-indent ()
   "Indent the yanked region immediately after yanking.  It allows to copy a
 hunk from one indentaion level, paste it into another indentation level and
@@ -295,7 +297,7 @@ don't have the formatting messed up."
 (global-set-key (kbd "C-y") #'ed/yank-indent)
 (defun ed/yank-pop-no-newline ()
   (interactive)
-  (ed/delete-newline-after-function #'yank-pop))
+  (ed/delete-empty-line-after-function #'yank-pop))
 (defun ed/yank-pop-indent ()
   (interactive)
   (ed/indent-after-function #'ed/yank-pop-no-newline))
