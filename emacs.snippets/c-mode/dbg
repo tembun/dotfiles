@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: debug print statement
+# key: dbg
+# expand-env: ((yas-indent-line 'fixed))
+# --
+fprintf(stderr, "%s():%d$1\n", __func__, __LINE__$2);$0
