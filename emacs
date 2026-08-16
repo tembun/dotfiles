@@ -329,6 +329,8 @@ don't have the formatting messed up."
   (setq indent-tabs-mode t)
   (setq-local c-tab-always-indent nil)
   (c-set-style "bsd")
+  ;; Use C-c C-s at points of source code so see which c-set-offset is in effect
+  ;; for this situation.
   (c-set-offset 'arglist-close style/second-indent-offset)
   (c-set-offset 'arglist-cont-nonempty style/second-indent-offset)
   (c-set-offset 'defun-block-intro style/tab-width)
