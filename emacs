@@ -190,11 +190,13 @@
   (scroll/func-by-step-size #'scroll-other-window-down))
 (global-set-key (kbd "C-v") #'scroll/up)
 (global-set-key (kbd "M-v") #'scroll/down)
-(global-set-key (kbd "C-i") #'scroll/up-other-window)
-(global-set-key (kbd "M-i") #'scroll/down-other-window)
-;; Selecting regions
+(global-set-key (kbd "C-=") #'scroll/up-other-window)
+(global-set-key (kbd "M-=") #'scroll/down-other-window)
+;; Regions
 ;;
+(global-set-key (kbd "C-M-=") #'count-words-region)
 ;; expand-region
+;;
 (pkg/require 'expand-region)
 (global-set-key (kbd "C-M-SPC") #'er/expand-region)
 (global-set-key (kbd "M-SPC") #'er/contract-region)
