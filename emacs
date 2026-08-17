@@ -349,7 +349,7 @@ don't have the formatting messed up."
   (c-set-offset 'inclass style/tab-width)
   (c-set-offset 'knr-argdecl-intro style/tab-width)
   (c-set-offset 'knr-argdecl-intro style/tab-width)
-  (c-set-offset 'statement-block-intro 0)
+  (c-set-offset 'statement-block-intro style/tab-width)
   (c-set-offset 'statement-case-intro style/tab-width)
   (c-set-offset 'substatement style/tab-width)
   (c-set-offset 'substatement-open style/indent-offset))
