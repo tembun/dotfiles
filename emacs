@@ -157,6 +157,9 @@
 (setq-default fill-column 80)
 (add-hook 'after-change-major-mode-hook #'auto-fill-mode)
 (setq require-final-newline t)
+(add-hook 'prog-mode-hook
+	  #'(lambda ()
+	      (add-hook 'before-save-hook #'delete-trailing-whitespace nil t)))
 
 ;; Navigation
 ;;
