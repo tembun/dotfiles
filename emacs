@@ -106,7 +106,7 @@
                   (current-time)))
 		))
 ;; To make the date and time accurate, update the modeline every second.
-(run-with-timer 0 1 #'(lambda() (force-mode-line-update t)))
+(run-with-timer 0 1 #'force-mode-line-update t)
 
 ;; Text appearance
 ;;
