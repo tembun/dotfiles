@@ -72,6 +72,11 @@
 ;;
 ;; Without that the last character of right-aligned screen goes off the screen.
 (setq mode-line-right-align-edge 'right-fringe)
+;; vc-mode is not very customizable (I confirmed it by looking into sources),
+;; so it's just a hacky way to strip the VC backend name (I use nothing but Git)
+;; from it.
+(setcdr (assq 'vc-mode mode-line-format)
+        '((:eval (replace-regexp-in-string "^ Git:" " " vc-mode))))
 (setq-default mode-line-format
 	      ;; Writable and read-only indicators
               '((:eval mode-line-modified)
@@ -80,9 +85,8 @@
                 "%b <"
 		(:eval (format-mode-line mode-name))
 		">"
-		" "
-		;; Version control system name and its current branch
-                (10 (vc-mode vc-mode))
+		;; The current version control system state (branch, for Git)
+                vc-mode
 		;; Align everything below to the right edge
 		;;
 		mode-line-format-right-align
