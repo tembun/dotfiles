@@ -68,6 +68,31 @@
 ;; 'visual is the same as 'relative, but counts visual screen rows - it's more
 ;; practical for jumping around.
 (setq-default display-line-numbers 'visual)
+;; Battery
+;;
+(defun battery/acpiconf-function ()
+  (let* ((acpi-out (split-string
+		    (replace-regexp-in-string
+		     "\t" " " (replace-regexp-in-string
+			       ".*:\t+"
+			       ""
+			       (battery--call-process-to-string
+				"acpiconf"
+				"-i0")))
+		    "\n" t))
+	 (battery-life (nth 18 acpi-out))
+	 (battery-time-raw (nth 19 acpi-out))
+	 (battery-time (if (string= battery-time-raw "unknown")
+			   ""
+			 battery-time-raw)))
+    (list (cons ?p battery-life)
+	  (cons ?t battery-time))))
+(setq-default battery-status-function #'battery/acpiconf-function)
+;; <Battery percentage>~<remaining time, if known>
+(setq-default battery-mode-line-format "%p~%t")
+;; It starts a timer that periodically (60 seconds by default) updates
+;; battery-mode-line-string, so that it can be used in modeline.
+(display-battery-mode)
 ;; Mode line
 ;;
 ;; Without that the last character of right-aligned screen goes off the screen.
@@ -98,6 +123,8 @@
                    (number-to-string
                     (count-lines (point-min) (point-max)))))
                 ";%c)"
+		" "
+		battery-mode-line-string
 		" "
 		;; Current date and time
                 (:eval
