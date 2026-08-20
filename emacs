@@ -37,6 +37,12 @@
 ;;
 ;; Scratch buffer
 (global-set-key (kbd "C-c s p") #'scratch-buffer)
+;; Terminal
+;;
+(defun term/bash ()
+  (interactive)
+  (term "env bash"))
+(global-set-key (kbd "C-c t") #'term/bash)
 
 ;; Appearance
 ;;
