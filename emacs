@@ -36,7 +36,7 @@
 ;; Buffers
 ;;
 ;; Scratch buffer
-(global-set-key (kbd "C-c C-s") #'scratch-buffer)
+(global-set-key (kbd "C-c s p") #'scratch-buffer)
 
 ;; Appearance
 ;;
