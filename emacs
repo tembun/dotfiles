@@ -210,6 +210,15 @@
 (setq dired-create-destination-dirs-on-trailing-dirsep t)
 (define-key dired-mode-map (kbd "b") #'dired-up-directory)
 (define-key dired-mode-map (kbd "V") #'dired-preview-mode)
+;; Window management
+;;
+;; Otherwise window is always considered unsuitable for vertical split (its
+;; height is less than 80, which is a default value for this variable) and
+;; setting the split-window-preferred-direction will anyway result in the
+;; horizontal split.
+(setq split-height-threshold 30)
+(setq split-window-preferred-direction 'vertical)
+;;
 ;; Scrolling
 ;;
 ;; Custom scrolling steps
