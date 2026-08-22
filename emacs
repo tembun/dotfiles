@@ -235,7 +235,6 @@
 ;; horizontal split.
 (setq split-height-threshold 30)
 (setq split-window-preferred-direction 'vertical)
-;;
 ;; Scrolling
 ;;
 ;; Custom scrolling steps
