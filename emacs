@@ -200,9 +200,20 @@
 (setq-default fill-column 80)
 (add-hook 'after-change-major-mode-hook #'auto-fill-mode)
 (setq require-final-newline t)
+;; Whitespace cleanup
+;;
+;; If delete-trailing-whitespace should also delete trailing lines.
+(setq delete-trailing-lines t)
+(defun style/whitespace-cleanup ()
+  (interactive)
+  (delete-trailing-whitespace)
+  (whitespace-cleanup))
+;; Cleanup whitespaces immediately after the buffer is opened and whenever the
+;; buffer is saved.
 (add-hook 'prog-mode-hook
 	  #'(lambda ()
-	      (add-hook 'before-save-hook #'delete-trailing-whitespace nil t)))
+	      (style/whitespace-cleanup)
+	      (add-hook 'before-save-hook #'style/whitespace-cleanup)))
 
 ;; Navigation
 ;;
