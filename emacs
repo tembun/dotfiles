@@ -392,6 +392,10 @@ don't have the formatting messed up."
 
 ;; Major modes
 ;;
+;; Treesitter setup
+(setq treesit-enabled-modes t)
+(setq treesit-auto-install-grammar t)
+;;
 ;; C
 (defun c/style ()
   (style/setup-indent)
@@ -414,7 +418,6 @@ don't have the formatting messed up."
 
 ;; sh
 ;;
-(add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode))
 (defun sh/style ()
   (style/setup-indent)
   (setq-local sh-basic-offset style/tab-width)
@@ -429,7 +432,6 @@ don't have the formatting messed up."
 
 ;; JSON
 ;;
-(add-to-list 'major-mode-remap-alist '(js-json-mode . json-ts-mode))
 (defun json/style ()
   (style/setup-indent)
   (setq-local json-ts-mode-indent-offset style/indent-offset))
@@ -437,7 +439,6 @@ don't have the formatting messed up."
 
 ;; JavaScript
 ;;
-(add-to-list 'major-mode-remap-alist '(js-mode . js-ts-mode))
 (defun js/style ()
   (style/setup-indent)
   (setq-local js-indent-level style/indent-offset))
@@ -447,7 +448,6 @@ don't have the formatting messed up."
 
 ;; TypeScript
 ;;
-(add-to-list 'major-mode-remap-alist '(typescript-mode . typescript-ts-mode))
 (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
 (defun ts/style ()
   (style/setup-indent)
