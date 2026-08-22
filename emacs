@@ -44,6 +44,11 @@
   (term "env bash"))
 (global-set-key (kbd "C-c t") #'term/bash)
 
+;; Shell
+;;
+;; This is needed for bash(1) aliases to be available for {async-}shell-command.
+(setenv "BASH_ENV" "~/.bashrc")
+
 ;; Appearance
 ;;
 ;; Remove bells and whistles
