@@ -1,4 +1,5 @@
-; -*-emacs-lisp-*-
+;; -*- lexical-binding: t; mode: emacs-lisp -*-
+
 ;; Simple package manager
 ;;
 (require 'package)
