@@ -241,11 +241,11 @@
 ;; horizontal split.
 (setq split-height-threshold 30)
 (setq split-window-preferred-direction 'vertical)
-;; If the buffer's major mode, or the mode cdr from alist matches is derived
-;; from the major mode of the current buffer, display the buffer in the same
-;; window; otherwise - display the buffer in some already existing window.
-;; Indended for use is display-buffer-alist.
 (defun win/display-buffer-use-some-window-dwim (buffer alist)
+  "If the buffer's major mode, or the mode cdr from alist matches is derived
+from the major mode of the current buffer, display the buffer in the same
+window; otherwise - display the buffer in some already existing window.
+Intended for use in display-buffer-alist."
   (if (or (derived-mode-p (alist-get 'mode alist))
 	  (derived-mode-p (buffer-local-value 'major-mode buffer)))
       (display-buffer-same-window buffer (cons '(inhibit-same-window . nil) alist))
