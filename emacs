@@ -227,6 +227,8 @@
 (setq dired-create-destination-dirs-on-trailing-dirsep t)
 (define-key dired-mode-map (kbd "b") #'dired-up-directory)
 (define-key dired-mode-map (kbd "V") #'dired-preview-mode)
+(setq dired-create-empty-file-in-current-directory t)
+(define-key dired-mode-map (kbd "_") #'dired-create-empty-file)
 ;; Window management
 ;;
 ;; Otherwise window is always considered unsuitable for vertical split (its
