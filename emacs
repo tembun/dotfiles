@@ -220,6 +220,7 @@
 ;;
 ;; dired
 (require 'dired)
+(require 'wdired)
 (pkg/require 'dired-preview)
 (setq dired-mode t)
 (setq dired-kill-when-opening-new-dired-buffer t)
@@ -231,6 +232,7 @@
 (define-key dired-mode-map (kbd "V") #'dired-preview-mode)
 (setq dired-create-empty-file-in-current-directory t)
 (define-key dired-mode-map (kbd "_") #'dired-create-empty-file)
+(setq wdired-allow-to-change-permissions 'advanced)
 ;; Window management
 ;;
 ;; Otherwise window is always considered unsuitable for vertical split (its
