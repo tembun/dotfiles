@@ -408,8 +408,8 @@ don't have the formatting messed up."
 ;; Treesitter setup
 (setq treesit-enabled-modes t)
 (setq treesit-auto-install-grammar t)
-;;
 ;; C
+;;
 (defun c/style ()
   (style/setup-indent)
   (setq indent-tabs-mode t)
