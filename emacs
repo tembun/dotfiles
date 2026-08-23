@@ -198,6 +198,7 @@
 ;;
 (auto-fill-mode 1)
 (setq-default fill-column 80)
+(global-set-key (kbd "C-c f p") #'fill-paragraph)
 (add-hook 'after-change-major-mode-hook #'auto-fill-mode)
 (setq require-final-newline t)
 ;; Whitespace cleanup
