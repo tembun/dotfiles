@@ -221,6 +221,7 @@
 (require 'dired)
 (pkg/require 'dired-preview)
 (setq dired-mode t)
+(setq dired-kill-when-opening-new-dired-buffer t)
 (setq dired-listing-switches "-lah")
 (global-set-key (kbd "C-x C-d") #'dired)
 (setq dired-create-destination-dirs "always")
