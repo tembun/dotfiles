@@ -503,3 +503,11 @@ don't have the formatting messed up."
 	       (win/display-buffer-use-some-window-dwim)
 	       (mode . Man-mode)
 	       (post-command-select-window . t)))
+
+;; Buffer menu
+;;
+(add-to-list 'display-buffer-alist
+	     '((derived-mode . Buffer-menu-mode)
+	       (win/display-buffer-use-some-window-dwim)
+	       (mode . Buffer-menu-mode)
+	       (post-command-select-window . t)))
