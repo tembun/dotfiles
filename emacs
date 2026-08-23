@@ -492,6 +492,13 @@ don't have the formatting messed up."
 	     '((derived-mode . magit-status-mode)
 	       (display-buffer-full-frame)))
 
+;; Compilation
+;;
+(add-to-list 'display-buffer-alist
+	     '((derived-mode . compilation-mode)
+	       (win/display-buffer-use-some-window-dwim)
+	       (mode . compilation-mode)))
+
 ;; Man
 ;;
 ;; Major mode for man pages (Man-mode) is not set at the time the buffer
