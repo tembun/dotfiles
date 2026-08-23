@@ -479,3 +479,6 @@ don't have the formatting messed up."
   (setq-local fill-column 72))
 (add-hook 'git-commit-mode-hook #'magit/style)
 (define-key magit-status-mode-map (kbd "M-RET") #'forge-checkout-this-pullreq)
+(add-to-list 'display-buffer-alist
+	     '((derived-mode . magit-status-mode)
+	       (display-buffer-full-frame)))
