@@ -491,3 +491,15 @@ don't have the formatting messed up."
 (add-to-list 'display-buffer-alist
 	     '((derived-mode . magit-status-mode)
 	       (display-buffer-full-frame)))
+
+;; Man
+;;
+;; Major mode for man pages (Man-mode) is not set at the time the buffer
+;; matching condition is evaluated, so we can't use derived-mode condition here
+;; - can only match the buffer by the regexp.  That also means that we should
+;; proved mode for win/display-buffer-use-some-window-dwim.
+(add-to-list 'display-buffer-alist
+	     '("\\*Man"
+	       (win/display-buffer-use-some-window-dwim)
+	       (mode . Man-mode)
+	       (post-command-select-window . t)))
