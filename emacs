@@ -418,8 +418,8 @@ don't have the formatting messed up."
 ;; Major modes
 ;;
 ;; Treesitter setup
-(setq treesit-enabled-modes t)
-(setq treesit-auto-install-grammar t)
+(setopt treesit-enabled-modes t)
+(setq treesit-auto-install-grammar 'always)
 ;; C
 ;;
 (defun c/style ()
