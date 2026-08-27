@@ -109,11 +109,6 @@
 ;;
 ;; Without that the last character of right-aligned screen goes off the screen.
 (setq mode-line-right-align-edge 'right-fringe)
-;; vc-mode is not very customizable (I confirmed it by looking into sources),
-;; so it's just a hacky way to strip the VC backend name (I use nothing but Git)
-;; from it.
-(setcdr (assq 'vc-mode mode-line-format)
-	'((:eval (replace-regexp-in-string "^ Git:" " " vc-mode))))
 (setq-default mode-line-format
 	      ;; Writable and read-only indicators
 	      '((:eval mode-line-modified)
@@ -123,7 +118,7 @@
 		" "
 		(:eval (format-mode-line mode-name))
 		;; The current version control system state (branch, for Git)
-		vc-mode
+		(vc-mode vc-mode)
 		;; Align everything below to the right edge
 		;;
 		mode-line-format-right-align
@@ -144,6 +139,11 @@
 		  "%a %d %b %H:%M"
 		  (current-time)))
 		))
+;; vc-mode is not very customizable (I confirmed it by looking into sources),
+;; so it's just a hacky way to strip the VC backend name (I use nothing but Git)
+;; from it.
+(setcdr (assq 'vc-mode mode-line-format)
+	'((:eval (replace-regexp-in-string "^ Git:" " " vc-mode))))
 ;; To make the date and time accurate, update the modeline every second.
 (run-with-timer 0 1 #'force-mode-line-update t)
 
