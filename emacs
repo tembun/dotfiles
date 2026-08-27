@@ -119,22 +119,22 @@
 	      '((:eval mode-line-modified)
 		" "
 		;; A buffer name with it's major mode
-		"%b <"
+		"%b"
+		" "
 		(:eval (format-mode-line mode-name))
-		">"
 		;; The current version control system state (branch, for Git)
 		vc-mode
 		;; Align everything below to the right edge
 		;;
 		mode-line-format-right-align
 		;; Current line, total number of lines and the current column
-		"(%l/"
+		"%l/"
 		(:eval
 		 (save-restriction
 		   (widen)
 		   (number-to-string
 		    (count-lines (point-min) (point-max)))))
-		";%c)"
+		";%c"
 		" "
 		battery-mode-line-string
 		" "
