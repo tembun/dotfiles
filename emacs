@@ -92,7 +92,7 @@
 				"acpiconf"
 				"-i0")))
 		    "\n" t))
-	 (battery-life (nth 18 acpi-out))
+	 (battery-life (replace-regexp-in-string "%" "" (nth 18 acpi-out)))
 	 (battery-time-raw (nth 19 acpi-out))
 	 (battery-time (if (string= battery-time-raw "unknown")
 			   ""
