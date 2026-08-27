@@ -405,6 +405,8 @@ don't have the formatting messed up."
 (pkg/require 'company)
 (global-company-mode t)
 (setq company-idle-delay nil)
+(setq company-frontends
+      '(company-pseudo-tooltip-unless-just-one-frontend))
 (global-set-key (kbd "M-n") #'company-complete)
 ;; Snippets
 ;;
