@@ -507,6 +507,13 @@ don't have the formatting messed up."
 	       (win/display-buffer-use-some-window-dwim)
 	       (mode . compilation-mode)))
 
+;; Shell command
+;;
+(add-to-list 'display-buffer-alist
+	     '((derived-mode . shell-command-mode)
+	       nil
+	       (post-command-select-window . t)))
+
 ;; Occur
 ;;
 (add-to-list 'display-buffer-alist
