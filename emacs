@@ -505,6 +505,13 @@ don't have the formatting messed up."
 	       (win/display-buffer-use-some-window-dwim)
 	       (mode . compilation-mode)))
 
+;; Occur
+;;
+(add-to-list 'display-buffer-alist
+	     '((derived-mode . occur-mode)
+	       nil
+	       (post-command-select-window . t)))
+
 ;; Man
 ;;
 ;; Major mode for man pages (Man-mode) is not set at the time the buffer
