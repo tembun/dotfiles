@@ -521,6 +521,13 @@ don't have the formatting messed up."
 	       nil
 	       (post-command-select-window . t)))
 
+;; Help
+;;
+(add-to-list 'display-buffer-alist
+	     '((derived-mode . help-mode)
+	       nil
+	       (post-command-select-window . t)))
+
 ;; Man
 ;;
 ;; Major mode for man pages (Man-mode) is not set at the time the buffer
