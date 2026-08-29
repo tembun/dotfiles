@@ -380,6 +380,18 @@ Intended for use in display-buffer-alist."
    #'(lambda ()
        (kill-region start end))))
 (global-set-key (kbd "C-w") #'ed/kill-whole-region)
+;; Kill-ring
+;;
+(defun ed/smart-kill-ring-save ()
+  "Save the region (if it's active) or a line into the kill ring."
+  (interactive)
+  (kill-ring-save
+   (line-beginning-position)
+   (line-end-position)
+   (if mark-active
+       (list (region-beginning) (region-end))
+     nil)))
+(global-set-key (kbd "M-w") #'ed/smart-kill-ring-save)
 ;; Yanking
 ;;
 (defun ed/yank-no-newline ()
