@@ -368,7 +368,7 @@ Intended for use in display-buffer-alist."
   "Kill the whole visual line."
   (interactive)
   (if (ed/check-empty-line)
-      (kill-whole-line)
+      (delete-char 1)
       (beginning-of-visual-line)
       (ed/delete-empty-line-after-function #'kill-visual-line)))
 (global-set-key (kbd "C-k") #'ed/kill-whole-visual-line)
