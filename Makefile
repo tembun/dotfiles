@@ -4,9 +4,6 @@ HOME:sh= echo "${HOME}"
 .error "HOME environment variable is not set"
 .endif
 PREFIX= ${HOME}
-# XXX install(1) is not POSIX
-INSTALL= install
-INSTALL_SYMLINK_OPT= -l s
 
 LINK_shrc= bashrc
 
@@ -18,7 +15,7 @@ src_dest=.${src_handle}
 main_target=${PREFIX}/${src_dest}
 ${main_target}: ${src}
 	@mkdir -p ${.TARGET:H}
-	${INSTALL} ${INSTALL_SYMLINK_OPT} ${.ALLSRC} ${.TARGET}
+	ln -s ${.ALLSRC} ${.TARGET}
 
 link_targets=
 .if defined(LINK_${src_handle})
@@ -26,7 +23,7 @@ link_targets=${LINK_${src_handle}:C/^/${PREFIX}\/./}
 .for link_target in ${link_targets}
 ${link_target}: ${src}
 	@mkdir -p ${.TARGET:H}
-	${INSTALL} ${INSTALL_SYMLINK_OPT} ${.ALLSRC} ${.TARGET}
+	ln -s ${.ALLSRC} ${.TARGET}
 .endfor
 .endif
 
