@@ -382,7 +382,7 @@ Intended for use in display-buffer-alist."
 (global-set-key (kbd "C-w") #'ed/kill-whole-region)
 ;; Kill-ring
 ;;
-(defun ed/smart-kill-ring-save ()
+(defun ed/kill-ring-save-dwim ()
   "Save the region (if it's active) or a line into the kill ring."
   (interactive)
   (kill-ring-save
@@ -391,7 +391,7 @@ Intended for use in display-buffer-alist."
    (if mark-active
        (list (region-beginning) (region-end))
      nil)))
-(global-set-key (kbd "M-w") #'ed/smart-kill-ring-save)
+(global-set-key (kbd "M-w") #'ed/kill-ring-save-dwim)
 ;; Yanking
 ;;
 (defun ed/yank-no-newline ()
