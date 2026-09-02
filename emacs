@@ -134,7 +134,7 @@
 ;; so it's just a hacky way to strip the VC backend name (I use nothing but Git)
 ;; from it.
 (setcdr (assq 'vc-mode mode-line-format)
-	'((:eval (replace-regexp-in-string "^ Git:" " " vc-mode))))
+	'((:eval (replace-regexp-in-string "^ Git[\@\:\-]" " " vc-mode))))
 ;; To make the date and time accurate, update the modeline every second.
 (run-with-timer 0 1 #'force-mode-line-update t)
 
