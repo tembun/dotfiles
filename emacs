@@ -122,15 +122,6 @@
 		;; Align everything below to the right edge
 		;;
 		mode-line-format-right-align
-		;; Current line, total number of lines and the current column
-		"%l/"
-		(:eval
-		 (save-restriction
-		   (widen)
-		   (number-to-string
-		    (count-lines (point-min) (point-max)))))
-		";%c"
-		" "
 		battery-mode-line-string
 		" "
 		;; Current date and time
