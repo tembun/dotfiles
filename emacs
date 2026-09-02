@@ -82,7 +82,7 @@
 (setq-default display-line-numbers 'visual)
 ;; Battery
 ;;
-(defun battery/acpiconf-function ()
+(defun battery/acpiconf-func ()
   (let* ((acpi-out (split-string
 		    (replace-regexp-in-string
 		     "\t" " " (replace-regexp-in-string
@@ -99,7 +99,7 @@
 			 battery-time-raw)))
     (list (cons ?p battery-life)
 	  (cons ?t battery-time))))
-(setq-default battery-status-function #'battery/acpiconf-function)
+(setq-default battery-status-function #'battery/acpiconf-func)
 ;; <Battery percentage>~<remaining time, if known>
 (setq-default battery-mode-line-format "%p~%t")
 ;; It starts a timer that periodically (60 seconds by default) updates
