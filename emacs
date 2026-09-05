@@ -104,7 +104,6 @@
 		;; The current version control system state (branch, for Git)
 		(vc-mode vc-mode)
 		;; Align everything below to the right edge
-		;;
 		mode-line-format-right-align
 		battery-mode-line-string
 		" "
