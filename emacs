@@ -210,6 +210,10 @@
 (setq wdired-allow-to-change-permissions 'advanced)
 ;; Window management
 ;;
+(defun win/func-other (func)
+  "Execute the function in other window."
+  (other-window-prefix)
+  (funcall func))
 ;; Otherwise window is always considered unsuitable for vertical split (its
 ;; height is less than 80, which is a default value for this variable) and
 ;; setting the split-window-preferred-direction will anyway result in the
@@ -503,6 +507,10 @@ don't have the formatting messed up."
 ;;
 ;; This is needed for bash(1) aliases to be available for {async-}shell-command.
 (setenv "BASH_ENV" "~/.bashrc")
+(global-set-key (kbd "C-c s s") #'shell)
+(global-set-key (kbd "C-x 4 s s") #'(lambda ()
+				      (interactive)
+				      (win/func-other #'shell)))
 
 ;; Shell command
 ;;
