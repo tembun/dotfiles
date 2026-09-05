@@ -34,7 +34,6 @@
       `((".*" ,(expand-file-name user-backup-dir t))))
 (setq lock-file-name-transforms '(("\\`/.*/\\([^/]+\\)\\'" "/tmp/\\1" t)))
 
-
 ;; Appearance
 ;;
 ;; Remove bells and whistles
