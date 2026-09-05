@@ -34,21 +34,6 @@
       `((".*" ,(expand-file-name user-backup-dir t))))
 (setq lock-file-name-transforms '(("\\`/.*/\\([^/]+\\)\\'" "/tmp/\\1" t)))
 
-;; Buffers
-;;
-;; Scratch buffer
-(global-set-key (kbd "C-c s p") #'scratch-buffer)
-;; Terminal
-;;
-(defun term/bash ()
-  (interactive)
-  (term "env bash"))
-(global-set-key (kbd "C-c t") #'term/bash)
-
-;; Shell
-;;
-;; This is needed for bash(1) aliases to be available for {async-}shell-command.
-(setenv "BASH_ENV" "~/.bashrc")
 
 ;; Appearance
 ;;
@@ -510,12 +495,24 @@ don't have the formatting messed up."
 	       (win/display-buffer-use-some-window-dwim)
 	       (mode . compilation-mode)))
 
+;; Shell
+;;
+;; This is needed for bash(1) aliases to be available for {async-}shell-command.
+(setenv "BASH_ENV" "~/.bashrc")
+
 ;; Shell command
 ;;
 (add-to-list 'display-buffer-alist
 	     '((derived-mode . shell-command-mode)
 	       nil
 	       (post-command-select-window . t)))
+
+;; Terminal
+;;
+(defun term/bash ()
+  (interactive)
+  (term "env bash"))
+(global-set-key (kbd "C-c t") #'term/bash)
 
 ;; Occur
 ;;
@@ -549,3 +546,17 @@ don't have the formatting messed up."
 	     '((derived-mode . Buffer-menu-mode)
 	       (win/display-buffer-use-some-window-dwim)
 	       (post-command-select-window . t)))
+
+;; Scratch buffer
+;;
+(global-set-key (kbd "C-c s p") #'scratch-buffer)
+
+;; Minibuffer
+;;
+(defun minibuffer/focus ()
+  "Focus minibuffer window."
+  (interactive)
+  (if (active-minibuffer-window)
+      (select-window (active-minibuffer-window))
+    (error "Minibuffer is not active")))
+(global-set-key (kbd "C-c m b") #'minibuffer/focus)
