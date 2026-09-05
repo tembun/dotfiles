@@ -524,6 +524,9 @@ don't have the formatting messed up."
   (interactive)
   (term "env bash"))
 (global-set-key (kbd "C-c t") #'term/bash)
+(global-set-key (kbd "C-x 4 t") #'(lambda ()
+				    (interactive)
+				    (win/func-other #'term/bash)))
 
 ;; Occur
 ;;
