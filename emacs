@@ -477,6 +477,11 @@ don't have the formatting messed up."
   (ts/style))
 (add-hook 'typescript-ts-mode-hook #'ts/setup)
 
+;; Markdown
+;;
+(custom-set-variables
+ '(markdown-command "/usr/local/bin/pandoc"))
+
 ;; Magit
 ;;
 (pkg/require 'magit 'magit-ido 'magit-gh 'magit-pre-commit 'forge)
