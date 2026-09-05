@@ -124,7 +124,7 @@
 ;; Text appearance
 ;;
 ;; whitespace-mode
-(global-set-key (kbd "C-c C-w") #'whitespace-mode)
+(global-set-key (kbd "C-c w s") #'whitespace-mode)
 ;;
 ;; Highlighting text anchors like XXX, TODO, KLUDGE and so on.
 (defface face/text-anchor-urgent
