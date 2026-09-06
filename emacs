@@ -303,7 +303,8 @@ Intended for use in display-buffer-alist."
 	      (local-set-key (kbd "DEL") #'delete-backward-char)))
 (global-set-key (kbd "C-M-;") #'comment-line)
 (global-set-key (kbd "C-<return>") #'default-indent-new-line)
-(put 'downcase-region 'disabled nil)
+(global-set-key (kbd "M-u") #'upcase-dwim)
+(global-set-key (kbd "M-l") #'downcase-dwim)
 ;; Helpers
 ;;
 (defun ed/check-empty-line ()
