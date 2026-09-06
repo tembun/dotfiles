@@ -564,6 +564,9 @@ don't have the formatting messed up."
 ;; Scratch buffer
 ;;
 (global-set-key (kbd "C-c s p") #'scratch-buffer)
+(global-set-key (kbd "C-x 4 s p") #'(lambda ()
+				      (interactive)
+				      (win/func-other #'scratch-buffer)))
 
 ;; Minibuffer
 ;;
