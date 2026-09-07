@@ -19,37 +19,37 @@ endif
 " Base settings
 "
 set autoindent
-set autowrite 		" Automatically save the file when other program modifies it
+set autowrite		" Automatically save the file when other program modifies it
 set backupcopy=yes
 set completeopt=menuone	" Show autocompletion menu even for a single match
-set display=lastline 	" Display as much as possible of the last line
+set display=lastline	" Display as much as possible of the last line
 set exrc
-set foldmethod=manual 	" Folds must be created manually
+set foldmethod=manual	" Folds must be created manually
 set formatoptions=trcq
 set hidden
 set history=10000
-set hlsearch 		" Highlight search terms
+set hlsearch		" Highlight search terms
 set ignorecase
-set incsearch 		" Set incremental search
-set laststatus=2 	" Always display filename
-set lbr! 		" Wrap lines at word boundaries
+set incsearch		" Set incremental search
+set laststatus=2	" Always display filename
+set lbr!		" Wrap lines at word boundaries
 set mouse=		" Disable mouse support
 set noesckeys
 set number		" Display line numbers on the left side
 set relativenumber	" Make line numbers relative to the line
-set ruler 		" Display my position in the bottom right of the window
-set scrolloff=5 	" Keep a minimum of 5 lines above and below the cursor
+set ruler		" Display my position in the bottom right of the window
+set scrolloff=5		" Keep a minimum of 5 lines above and below the cursor
 set shiftwidth=8	" Applies to =, > and < alignment
 set signcolumn=no
 set smartcase
 set smartindent
 set splitbelow
 set splitright
-set statusline=%F%10v 	" Display filepath and screen column number in status line
+set statusline=%F%10v	" Display filepath and screen column number in status line
 set tabstop=8		" Tab width for a tab stop
 set textwidth=80	" The width at which switch to a new line
 set wrap
-set wrapscan 		" Come back to the first search match after the last one
+set wrapscan		" Come back to the first search match after the last one
 
 let swapdir = vimdir . '.swap'
 if !isdirectory(swapdir)
