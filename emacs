@@ -206,7 +206,7 @@
 (define-key dired-mode-map (kbd "V") #'dired-preview-mode)
 (setq dired-create-empty-file-in-current-directory t)
 (define-key dired-mode-map (kbd "_") #'dired-create-empty-file)
-(setq wdired-allow-to-change-permissions 'advanced)
+(setq wdired-allow-to-change-permissions t)
 ;; Window management
 ;;
 (defun win/func-other (func)
