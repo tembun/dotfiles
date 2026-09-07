@@ -62,7 +62,6 @@ let &directory = swapdir . '//'
 set t_Co=256
 set t_md=
 syntax on
-color monochrome
 hi ExtraWhitespace ctermbg=130
 match ExtraWhitespace /[ 	]\+$/
 au BufWinEnter * match ExtraWhitespace /[ 	]\+$/
