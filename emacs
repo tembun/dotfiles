@@ -228,6 +228,9 @@ Intended for use in display-buffer-alist."
 	  (derived-mode-p (buffer-local-value 'major-mode buffer)))
       (display-buffer-same-window buffer (cons '(inhibit-same-window . nil) alist))
     (display-buffer-use-some-window buffer (cons '(inhibit-same-window . t) alist))))
+;; Rotating the windows
+;;
+(global-set-key (kbd "C-x w r") #'rotate-windows)
 ;; Resizing the windows
 ;;
 (global-set-key (kbd "S-M-<left>") #'shrink-window-horizontally)
