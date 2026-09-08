@@ -301,6 +301,13 @@ Intended for use in display-buffer-alist."
 (setq helm-follow-mode-persistent t)
 (global-set-key (kbd "C-x f") #'helm-do-grep-ag)
 (global-set-key (kbd "C-x C-x") #'helm-resume)
+;; Searching the things at point
+;;
+;; Swap two default keybindings: `thing` searches for the all substring matches,
+;; `symbol` - for the exact word match.  I need the first one more often, so put
+;; it in a handier binding.
+(global-set-key (kbd "M-s .") #'isearch-forward-thing-at-point)
+(global-set-key (kbd "M-s M-.") #'isearch-forward-symbol-at-point)
 
 ;; Text editing
 ;;
