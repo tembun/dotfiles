@@ -274,6 +274,9 @@ Intended for use in display-buffer-alist."
 (setq undo-tree-history-directory-alist
       `(("." . ,(concat user-emacs-directory ".undo-tree"))))
 (global-set-key (kbd "C-M-/") #'undo-tree-redo)
+;; Buffer information
+;;
+(global-set-key (kbd "C-c i") #'count-words)
 
 ;; Searching
 ;;
