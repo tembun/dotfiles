@@ -101,6 +101,7 @@
 		"%b"
 		" "
 		(:eval (format-mode-line mode-name))
+		modeline/img-dimensions
 		;; The current version control system state (branch, for Git)
 		(vc-mode vc-mode)
 		;; Align everything below to the right edge
@@ -567,6 +568,17 @@ don't have the formatting messed up."
 	       (win/display-buffer-use-some-window-dwim)
 	       (mode . Man-mode)
 	       (post-command-select-window . t)))
+
+;; Image
+;;
+(defvar-local modeline/img-dimensions nil)
+(defun img/dimensions-modeline ()
+  "Set modeline/img-dimensions for dimensions to be displayed in the modeline."
+  (when-let ((image (image-get-display-property)))
+    (let ((size (image-size image t)))
+      (setq modeline/img-dimensions
+	    (format " %d×%d" (car size) (cdr size))))))
+(add-hook 'image-mode-hook #'img/dimensions-modeline)
 
 ;; Buffer menu
 ;;
