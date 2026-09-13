@@ -603,3 +603,4 @@ don't have the formatting messed up."
       (select-window (active-minibuffer-window))
     (error "Minibuffer is not active")))
 (global-set-key (kbd "C-c m b") #'minibuffer/focus)
+(setq completions-format 'one-column)
