@@ -433,6 +433,21 @@ don't have the formatting messed up."
 ;; Treesitter setup
 (setopt treesit-enabled-modes t)
 (setq treesit-auto-install-grammar 'always)
+
+;; Elisp
+;;
+(defun elisp/eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+	     (current-buffer))
+    (error (message "Invalid expression")
+	   (insert (current-kill 0)))))
+;; Yes, I want to it be globally available, not only in Elisp buffers.
+(keymap-set universal-argument-map "C-j" #'elisp/eval-and-replace)
+
 ;; C
 ;;
 (defun c/style ()
