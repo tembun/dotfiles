@@ -532,6 +532,8 @@ don't have the formatting messed up."
 
 ;; Compilation
 ;;
+(setq compilation-scroll-output t)
+(setq next-error-highlight 1.2)
 (add-to-list 'display-buffer-alist
 	     '((derived-mode . compilation-mode)
 	       (win/display-buffer-use-some-window-dwim)
