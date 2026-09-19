@@ -130,6 +130,9 @@
 ;; Text appearance
 ;;
 ;; whitespace-mode
+(setq whitespace-style '(face spaces tabs trailing tab-mark space-mark
+			      indentation))
+(global-whitespace-mode 1)
 (global-set-key (kbd "C-c w s") #'whitespace-mode)
 ;;
 ;; Highlighting text anchors like XXX, TODO, KLUDGE and so on.
