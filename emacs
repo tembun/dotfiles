@@ -547,6 +547,7 @@ don't have the formatting messed up."
 (global-set-key (kbd "C-x 4 s s") #'(lambda ()
 				      (interactive)
 				      (win/func-other #'shell)))
+(setq comint-scroll-to-bottom-on-input t)
 
 ;; Shell command
 ;;
