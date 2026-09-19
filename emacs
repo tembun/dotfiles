@@ -108,11 +108,16 @@
 		mode-line-format-right-align
 		battery-mode-line-string
 		" "
-		;; Current date and time
+		;; Current date and time.
+		;; Date is in the format <hours in local time>(<hours in UTC>):<minutes>
 		(:eval
-		 (format-time-string
-		  "%a %d %b %H:%M"
-		  (current-time)))
+		 (let ((now (current-time)))
+		   (format "%s %s(%s):%s"
+			   (format-time-string "%a %d %b")
+			   (format-time-string "%H")
+			   ;; 10800 - an offset in seconds for UTC+3
+			   (format-time-string "%H" now 10800)
+			   (format-time-string "%M"))))
 		))
 ;; vc-mode is not very customizable (I confirmed it by looking into sources),
 ;; so it's just a hacky way to strip the VC backend name (I use nothing but Git)
