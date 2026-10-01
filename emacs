@@ -179,10 +179,10 @@
   (setq-local tab-width style/tab-width))
 ;; Auto line wrapping
 ;;
-(auto-fill-mode 1)
+(auto-fill-mode 0)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (setq-default fill-column 80)
 (global-set-key (kbd "C-c f p") #'fill-paragraph)
-(add-hook 'after-change-major-mode-hook #'auto-fill-mode)
 (setq require-final-newline t)
 ;; Whitespace cleanup
 ;;
@@ -192,12 +192,6 @@
   (interactive)
   (delete-trailing-whitespace)
   (whitespace-cleanup))
-;; Cleanup whitespaces immediately after the buffer is opened and whenever the
-;; buffer is saved.
-(add-hook 'prog-mode-hook
-	  #'(lambda ()
-	      (style/whitespace-cleanup)
-	      (add-hook 'before-save-hook #'style/whitespace-cleanup)))
 
 ;; Navigation
 ;;
