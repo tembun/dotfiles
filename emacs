@@ -314,6 +314,7 @@ Intended for use in display-buffer-alist."
 
 ;; Text editing
 ;;
+(global-subword-mode 1)
 (add-hook 'after-change-major-mode-hook
 	  #'(lambda()
 	      (local-set-key (kbd "DEL") #'delete-backward-char)))
