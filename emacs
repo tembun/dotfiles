@@ -280,6 +280,9 @@ Intended for use in display-buffer-alist."
 ;; Buffer information
 ;;
 (global-set-key (kbd "C-c i") #'count-words)
+;; Saving position
+;;
+(save-place-mode 1)
 
 ;; Searching
 ;;
