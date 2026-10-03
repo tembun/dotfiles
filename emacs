@@ -284,6 +284,8 @@ Intended for use in display-buffer-alist."
 ;; Saving position
 ;;
 (save-place-mode 1)
+(pkg/require 'recentf)
+(recentf-mode 1)
 
 ;; Searching
 ;;
@@ -299,6 +301,11 @@ Intended for use in display-buffer-alist."
 (pkg/require 'smex)
 (global-set-key (kbd "M-x") #'smex)
 (global-set-key (kbd "M-X") #'smex-major-mode-commands)
+;; projectile
+;;
+(pkg/require 'projectile)
+(pkg/require 'helm-projectile)
+(global-set-key (kbd "C-c p r") #'helm-projectile-recentf)
 ;; which-key-mode
 (require 'which-key)
 (which-key-mode)
