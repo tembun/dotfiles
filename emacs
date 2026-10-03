@@ -274,6 +274,7 @@ Intended for use in display-buffer-alist."
 ;;
 (pkg/require 'undo-tree)
 (global-undo-tree-mode 1)
+(setq undo-tree-enable-undo-in-region t)
 (setq undo-tree-history-directory-alist
       `(("." . ,(concat user-emacs-directory ".undo-tree"))))
 (global-set-key (kbd "C-M-/") #'undo-tree-redo)
