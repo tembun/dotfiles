@@ -519,10 +519,12 @@ don't have the formatting messed up."
 (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
 (defun ts/style ()
   (style/setup-indent)
-  (setq-local typescript-ts-mode-indent-offset style/indent-offset))
+  (setq-local typescript-ts-mode-indent-offset style/indent-offset)
+  (setq-local typescript-ts-indent-offset style/indent-offset))
 (defun ts/setup ()
   (ts/style))
 (add-hook 'typescript-ts-mode-hook #'ts/setup)
+(add-hook 'tsx-ts-mode-hook #'ts/setup)
 
 ;; Markdown
 ;;
