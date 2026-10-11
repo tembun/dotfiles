@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t; mode: emacs-lisp -*-
+(setq trusted-content :all)
 
 ;; Simple package manager
 ;;
