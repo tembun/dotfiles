@@ -113,12 +113,20 @@
 		;; Date is in the format <hours in local time>(<hours in UTC>):<minutes>
 		(:eval
 		 (let ((now (current-time)))
-		   (format "%s %s(%s):%s"
-			   (format-time-string "%a %d %b")
-			   (format-time-string "%H")
-			   ;; 10800 - an offset in seconds for UTC+3
-			   (format-time-string "%H" now 10800)
-			   (format-time-string "%M"))))
+		   (concat
+		    (propertize
+		     (format-time-string "%a %d %b ")
+		     'face `(:foreground
+			     ;; Make date the same color as function name.
+			     ,(face-foreground 'font-lock-function-name-face nil t)))
+		    (propertize
+		     (format "%s(%s):%s"
+			     (format-time-string "%H")
+			     (format-time-string "%H" now 10800)
+			     (format-time-string "%M"))
+		     'face `(:foreground
+			     ;; Make clock the same color as keyword name (e.g. const).
+			     ,(face-foreground 'font-lock-keyword-face nil t))))))
 		))
 ;; vc-mode is not very customizable (I confirmed it by looking into sources),
 ;; so it's just a hacky way to strip the VC backend name (I use nothing but Git)
