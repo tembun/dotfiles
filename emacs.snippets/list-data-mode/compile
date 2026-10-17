@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: compile-cmd
+# key: compile
+# expand-env: ((yas-indent-line 'fixed))
+# --
+((nil
+. ((compile-command . "$1"))))
