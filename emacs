@@ -537,6 +537,11 @@ don't have the formatting messed up."
 ;; Lua
 ;;
 (add-hook 'lua-ts-mode-hook #'eglot-ensure)
+(defun lua/setup ()
+  ;; I don't know why exactly, but I feel like I don't want whitespace-mode when
+  ;; I'm editing Lua code :)
+  (whitespace-mode 0))
+(add-hook 'lua-ts-mode-hook #'lua/setup)
 
 ;; Markdown
 ;;
