@@ -534,6 +534,10 @@ don't have the formatting messed up."
 (add-hook 'typescript-ts-mode-hook #'ts/setup)
 (add-hook 'tsx-ts-mode-hook #'ts/setup)
 
+;; Lua
+;;
+(add-hook 'lua-ts-mode-hook #'eglot-ensure)
+
 ;; Markdown
 ;;
 (custom-set-variables
