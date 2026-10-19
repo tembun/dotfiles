@@ -251,6 +251,8 @@ Intended for use in display-buffer-alist."
 (global-set-key (kbd "S-M-<up>") #'enlarge-window)
 ;; Scrolling
 ;;
+;; By default the highlighted search results are unhighlighted on scroll.
+(setq isearch-allow-scroll t)
 ;; Custom scrolling steps
 (setq scroll/step-size 12)
 (defun scroll/func-by-step-size (func)
