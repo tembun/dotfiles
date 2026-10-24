@@ -554,6 +554,7 @@ don't have the formatting messed up."
 ;; Magit
 ;;
 (pkg/require 'magit 'magit-ido 'magit-gh 'magit-pre-commit 'forge)
+(setq magit-copy-revision-abbreviated t)
 (defun magit/style ()
   (setq-local fill-column 72))
 (add-hook 'git-commit-mode-hook #'magit/style)
