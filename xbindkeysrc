@@ -1,8 +1,9 @@
 # For the benefit of emacs users: -*- shell-script -*-
 
-# (Ctrl+Alt+Home) temporary full screenshot.
+# (Alt+Home) temporary full screenshot
 "scrot -F /tmp/%H_%M_%S.png"
-  m:0xc + c:110
+m:0x8 + c:110
+
 # (Ctrl+Home) temporary cropped screenshot
 # `--line mode=classic' is needed to make `-f' flag work with latest `scrot'.
 "scrot --line mode=classic -s -f /tmp/%H_%M_%S.png"
