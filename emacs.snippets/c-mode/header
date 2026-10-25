@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: .h header file skeleton
+# key: h
+# --
+#ifndef _$1_H_
+#define _$1_H_
+$0
+#endif /* _$1_H_ */
