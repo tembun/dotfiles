@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Infinite for() loop (for debugging purposes)
+# key: ilp
+# --
+for (;;);
