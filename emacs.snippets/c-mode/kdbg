@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Kernel debug printf(9) statement
+# key: kdbg
+# --
+printf("%s():%d$1\n", __func__, __LINE__$2);$0
