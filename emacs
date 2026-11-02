@@ -449,6 +449,7 @@ don't have the formatting messed up."
 ;; multiple-cursors
 ;;
 (pkg/require 'multiple-cursors)
+(define-key mc/keymap (kbd "<return>") nil)
 (global-set-key (kbd "C-M-<return>") #'mc/edit-lines)
 (global-set-key (kbd "C-M-,") #'mc/mark-previous-like-this)
 (global-set-key (kbd "C-M-.") #'mc/mark-next-like-this)
