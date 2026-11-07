@@ -592,6 +592,7 @@ don't have the formatting messed up."
 
 ;; Terminal
 ;;
+(require 'term)
 (defun term/bash ()
   (interactive)
   (term "env bash"))
@@ -599,6 +600,7 @@ don't have the formatting messed up."
 (global-set-key (kbd "C-x 4 t") #'(lambda ()
 				    (interactive)
 				    (win/func-other #'term/bash)))
+(define-key term-raw-map (kbd "C-c C-x") #'save-buffers-kill-terminal)
 
 ;; Occur
 ;;
