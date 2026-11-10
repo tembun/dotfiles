@@ -57,6 +57,8 @@ for doroot in ${DOROOTS}; do
 	fi
 done
 
+alias mpg123="mpg123 --loop -1"
+
 # shells/bash specific
 export PROMPT_COMMAND='history -a; history -r'
 
