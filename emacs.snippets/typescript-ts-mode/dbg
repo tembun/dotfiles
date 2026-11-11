@@ -3,4 +3,4 @@
 # key: dbg
 # expand-env: ((yas-indent-line 'fixed))
 # --
-console.dbg("DBGME: ")
+console.dbg("DBGME: $0")
