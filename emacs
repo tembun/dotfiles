@@ -563,6 +563,10 @@ don't have the formatting messed up."
 (add-to-list 'display-buffer-alist
 	     '((derived-mode . magit-status-mode)
 	       (display-buffer-full-frame)))
+(custom-set-faces
+ '(magit-diff-context-highlight ((t (:extend t
+					     :background "#41434a"
+					     :foreground "#dedede")))))
 
 ;; Compilation
 ;;
