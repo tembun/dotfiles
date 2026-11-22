@@ -68,6 +68,14 @@ export FZF_DEFAULT_OPTS="--walker-root=. /etc /usr/include /usr/local/etc /usr/l
 # misc/qt6ct is used to set a dark theme for Qt applications
 export QT_QPA_PLATFORMTHEME=qt6ct
 
+# This is a fix for known issue with some Java (java/openjdk*) programs that
+# don't work (they launch, but draw only an empty white screen) under
+# non-reparenting window manager (in my case dwm, and this bug is described
+# in its manual page).  Two solutions work for me: either setting `wmname LG3D`
+# (using x11-wm/wmname) or setting _JAVA_AWT_WM_NONREPARENTING=1 environment
+# variable.  The latter looks more elegant to me.
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # textproc/rg
 if check_prog rg; then
 	# There's no default config file, you have to manually declare it
