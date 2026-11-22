@@ -597,13 +597,26 @@ don't have the formatting messed up."
 ;; Terminal
 ;;
 (require 'term)
-(defun term/bash ()
+(defun term/bash (&optional dir)
+  "Open terminal with bash(1) in the directory (or in the current directory)."
   (interactive)
-  (term "env bash"))
-(global-set-key (kbd "C-c t") #'term/bash)
+  (let ((default-directory
+	 (if (and dir (file-directory-p dir))
+	     (expand-file-name dir)
+	   default-directory)))
+    (term "env bash")))
+(defconst my/music-dir (expand-file-name "~/aud/mus"))
+;; Open terminal in the music-directory (if exists).  If prefixed with C-u, open
+;; in the current directory.
+(global-set-key (kbd "C-c t") #'(lambda ()
+				  (interactive)
+				  (term/bash (unless current-prefix-arg my/music-dir))))
 (global-set-key (kbd "C-x 4 t") #'(lambda ()
 				    (interactive)
-				    (win/func-other #'term/bash)))
+				    (win/func-other #'(lambda ()
+							(interactive)
+							(term/bash
+							 (unless current-prefix-arg my/music-dir))))))
 (define-key term-raw-map (kbd "C-c C-x") #'save-buffers-kill-terminal)
 
 ;; Occur
